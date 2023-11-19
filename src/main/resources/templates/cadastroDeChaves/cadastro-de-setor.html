@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!--font final -->
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/cadastro_de_chaves.css}">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css">
+    <!-- Outros links de estilo ou scripts que você possa ter -->
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="bg-header-content">
+        <nav class="page-content top-nav-content">
+            <div class="itens-top-nav">
+                <ul>
+                    <a href="/cadastro-de-chaves" class="item-top-nav-active"> Cadastro de chaves</a>
+                    <a href="/painel-de-chaves" class="item-top-nav"> Painel de chaves</a>
+                    <a href="/controle-de-chaves" class="item-top-nav"> Controle de chaves</a>
+                </ul>
+            </div>
+            <div class="perfil-top-nav">
+                <span>Olá, name </span>
+                <span>foto</span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page-content main-conteudo">
+        <div class="form-list-chaves">
+            <div class="seletores-de-cadastro">
+                <a href="cadastro-de-chaves">
+                    <div class="select-cad">
+                        <span>Chaves</span>
+                    </div>
+                </a>
+                <a href="cadastro-de-setor">
+                    <div class="select-cad-active">
+                        <span>Setor</span>
+                    </div>
+                </a>
+                <a href="cadastro-de-localizacao">
+                    <div class="select-cad">
+                        <span>Localização</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="button-nova-sala">
+                
+                <span>
+                    <i class='bx bx-plus'></i>
+                    Nova chave
+                </span>
+            </div>
+        </div>
+        <div class="table-list-chaves">
+
+            <table id="table-chaves" class="display" style="width:100%">
+                <thead class="title-table">
+                    <tr>
+                        <th>Sala</th>
+                        <th>Setor</th>
+                        <th>Localização</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>08</td>
+                        <td>Sala de Aula</td>
+                        <td>Bloco 2</td>
+                        <td class="acao">
+                            <button class="editar">Editar</button>
+                            <button class="excluir">Excluir</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Administração</td>
+                        <td>Bloco 1</td>
+                        <td class="acao">
+                            <button class="editar">Editar</button>
+                            <button class="excluir">Excluir</button>
+                        </td>
+                    </tr>
+                    <!-- Adicione mais linhas conforme necessário -->
+                </tbody>
+                </table>
+        </div>
+        <section>
+            jaison
+        </section>
+    </main>
+
+    
+    
+    <script>
+
+
+        $(document).ready(function () {
+            $('#table-chaves').DataTable({
+                info: true,
+                ordering: true,
+                paging: true,
+                dom: 'lBfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json',
+                }
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

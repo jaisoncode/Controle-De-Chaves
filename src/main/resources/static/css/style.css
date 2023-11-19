@@ -1,4 +1,192 @@
-h1{
-    color: red;
-    background: blue;
+:root {
+    --backgroud-blue: #5E72E4;
+    --background-gray: #F2F3F8;
+    --white-color: #FFFFFF;
+    --in-use-color: #FFAB00;
+    --update-color: #E7D000;
+    --confirm-color: #36B37E;
+    --cancel-color: #FF5630;
+    --font-primary: #3C4858;
+    --font-second: #8492A6;
+    --line-color: #EFF2F7;
+    --line-header: #A3A9D5;
+    --placeholder-font: #6D7175;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+}
+
+body {
+    background: var(--background-gray);
+}
+
+html {
+    font-size: 62.5%;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link,
+a:visited {
+    color: var(--white-color);
+}
+
+li {
+    list-style: none;
+}
+
+.bg-header-content {
+    height: 34rem;
+    background: var(--backgroud-blue);
+    position: relative;
+
+}
+
+.page-content {
+    max-width: 110rem;
+    margin: 0 auto;
+}
+
+.top-nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 6.3rem;
+    border-bottom: solid 1px var(--line-header);
+}
+
+.item-top-nav {
+    font-size: 1.6rem;
+    padding-right: 2.5rem;
+    color: var(--white-color);
+    font-weight: 400;
+    opacity: .8;
+}
+
+.item-top-nav:hover {
+    opacity: 1;
+}
+
+.item-top-nav-active {
+    font-size: 1.6rem;
+    padding-right: 2.5rem;
+    color: var(--white-color);
+    font-weight: 500;
+}
+
+.main-conteudo {
+    position: relative;
+    top: -27rem;
+}
+
+.form-list-chaves {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.seletores-de-cadastro {
+    height: 4rem;
+    display: flex;
+    gap: .6rem;
+}
+
+.button-nova-sala {
+    display: flex;
+    background: var(--white-color);
+    width: 12rem;
+    height: 3.3rem;
+    border-radius: .5rem;
+    color: var(--font-primary);
+    font-weight: 500;
+    opacity: 0.8;
+
+}
+
+.button-nova-sala span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.bx-plus{
+    font-size: 1.8rem;
+    color: var(--font-primary);
+}
+
+.button-nova-sala:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+
+.select-cad,
+.select-cad-active {
+    width: 10.9rem;
+    height: 3.3rem;
+    font-weight: 500;
+    border-radius: .5rem 0 .5rem 0;
+    color: var(--font-primary);
+    background: var(--white-color);
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select-cad:hover {
+    opacity: 1;
+}
+
+.select-cad-active {
+    font-weight: 600;
+    opacity: 1;
+}
+
+.table-list-chaves {
+    border-radius: .5rem;
+    background: var(--white-color);
+}
+
+.table-edition {
+    padding: 3rem;
+}
+
+.dataTables_filter input[type="search"] {
+    /* Adicione estilos de margem, cor de texto e plano de fundo aqui */
+    margin: 10px;
+    /* Exemplo de margem */
+    color: var(--font-primary);
+    /* Exemplo de cor de texto */
+    background-color: #EFF2F7;
+    /* Exemplo de cor de fundo */
+    border: 1px solid #ccc;
+    /* Exemplo de borda */
+    border-radius: 5px;
+    /* Exemplo de borda arredondada */
+    padding: 5px;
+    /* Exemplo de preenchimento interno */
+    /* Outros estilos conforme necessário */
+    outline: none;
+
+}
+
+.dataTables_filter input[type="search"]::placeholder {
+    color: #6D7175;
+}
+
+.modal-content {
+    display: block;
+    background: black;
+    opacity: .4;
+    width: 100%;
+    height: 100%;
 }
