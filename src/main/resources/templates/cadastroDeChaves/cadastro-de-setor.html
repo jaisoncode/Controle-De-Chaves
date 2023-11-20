@@ -12,7 +12,7 @@
     <!--font final -->
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/cadastro_de_chaves.css}">
+    <link rel="stylesheet" th:href="@{/css/cadastro-de-setor.css}">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css">
@@ -70,11 +70,10 @@
                 </a>
             </div>
 
-            <div class="button-nova-sala">
-                
+            <div class="button-add-novo">
                 <span>
                     <i class='bx bx-plus'></i>
-                    Nova chave
+                    Novo setor
                 </span>
             </div>
         </div>
@@ -110,15 +109,38 @@
                     </tr>
                     <!-- Adicione mais linhas conforme necessário -->
                 </tbody>
-                </table>
+            </table>
         </div>
-        <section>
-            jaison
-        </section>
+
+        <div class="cad-setor-modal-content-group">
+            <div class="cad-setor-modal-content">
+                <div class="title-modal">
+                    <span>Crie um setor</span>
+                    <i class='bx bx-x'></i>
+                </div>
+
+                <form action="" method="post">
+                    <div class="inputs-form">
+                        <div class="">
+                            <label for="">Nome do setor</label>
+                            <input class="input-form" type="text" placeholder="Laboratório">
+                        </div>
+                    </div>
+
+                    <div class=" btn-input">
+                        <input class="input-form btn-form-add" type="submit" value="Adicionar setor">
+                    </div>
+
+                </form>
+
+
+
+            </div>
+        </div>
     </main>
 
-    
-    
+
+    <script src="/js/cadastro-de-setor.js" th:src="@{/js/cadastro-de-setor.js}"></script>
     <script>
 
 

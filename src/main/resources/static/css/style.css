@@ -42,6 +42,10 @@ li {
     list-style: none;
 }
 
+input {
+    outline: none;
+}
+
 .bg-header-content {
     height: 34rem;
     background: var(--backgroud-blue);
@@ -98,8 +102,9 @@ li {
     gap: .6rem;
 }
 
-.button-nova-sala {
+.button-add-novo {
     display: flex;
+    justify-content: center;
     background: var(--white-color);
     width: 12rem;
     height: 3.3rem;
@@ -110,19 +115,19 @@ li {
 
 }
 
-.button-nova-sala span {
+.button-add-novo span {
     display: flex;
     align-items: center;
     justify-content: center;
 
 }
 
-.bx-plus{
+.bx-plus {
     font-size: 1.8rem;
     color: var(--font-primary);
 }
 
-.button-nova-sala:hover {
+.button-add-novo:hover {
     cursor: pointer;
     opacity: 1;
 }
@@ -161,20 +166,12 @@ li {
 }
 
 .dataTables_filter input[type="search"] {
-    /* Adicione estilos de margem, cor de texto e plano de fundo aqui */
     margin: 10px;
-    /* Exemplo de margem */
     color: var(--font-primary);
-    /* Exemplo de cor de texto */
     background-color: #EFF2F7;
-    /* Exemplo de cor de fundo */
     border: 1px solid #ccc;
-    /* Exemplo de borda */
     border-radius: 5px;
-    /* Exemplo de borda arredondada */
     padding: 5px;
-    /* Exemplo de preenchimento interno */
-    /* Outros estilos conforme necessário */
     outline: none;
 
 }

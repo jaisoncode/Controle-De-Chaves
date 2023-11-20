@@ -12,7 +12,7 @@
     <!--font final -->
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/cadastro_de_chaves.css}">
+    <link rel="stylesheet" th:href="@{/css/cadastro-de-localizacao.css}">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css">
@@ -70,8 +70,8 @@
                 </a>
             </div>
 
-            <div class="button-nova-sala">
-                
+            <div class="button-add-novo">
+
                 <span>
                     <i class='bx bx-plus'></i>
                     Nova chave
@@ -110,18 +110,38 @@
                     </tr>
                     <!-- Adicione mais linhas conforme necessário -->
                 </tbody>
-                </table>
+            </table>
         </div>
-        <section>
-            jaison
-        </section>
+        <div class="cad-localizacao-modal-content-group">
+            <div class="cad-localizacao-modal-content">
+                <div class="title-modal">
+                    <span>Crie uma localização</span>
+                    <i class='bx bx-x'></i>
+                </div>
+
+                <form action="" method="post">
+                    <div class="inputs-form">
+                        <div class="">
+                            <label for="">Nome da Localização</label>
+                            <input class="input-form" type="text" placeholder="Bloco 01">
+                        </div>
+                    </div>
+
+                    <div class=" btn-input">
+                        <input class="input-form btn-form-add" type="submit" value="Adicionar localização">
+                    </div>
+
+                </form>
+
+
+
+            </div>
+        </div>
     </main>
 
-    
-    
+
+    <script src="/js/cadastro-de-localizacao.js" th:src="@{/js/cadastro-de-localizacao.js}"></script>
     <script>
-
-
         $(document).ready(function () {
             $('#table-chaves').DataTable({
                 info: true,
