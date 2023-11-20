@@ -4,8 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping
-public class CadastroDeChavesController {
+@RequestMapping("/page")
+public class CadastroDeChavesPaginationController {
 
     @GetMapping("/cadastro-de-chaves")
     public String cadastroDeChavesrPage() {

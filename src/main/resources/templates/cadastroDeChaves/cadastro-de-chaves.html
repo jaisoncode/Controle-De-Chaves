@@ -11,6 +11,9 @@
         rel="stylesheet">
     <!--font final -->
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/cadastro-de-chaves.css}">
 
@@ -51,7 +54,7 @@
     </header>
 
     <main class="page-content main-conteudo">
-        <div class="form-list-chaves">
+        <div class="container-seletores-de-cadastro">
             <div class="seletores-de-cadastro">
                 <a href="cadastro-de-chaves">
                     <div class="select-cad-active">
@@ -77,9 +80,9 @@
                 </span>
             </div>
         </div>
-        <div class="table-list-chaves">
 
-            <table id="table-chaves" class="display" style="width:100%">
+        <div class="table-list">
+            <table id="table-chaves" class="display table" style="width:100%">
                 <thead class="title-table">
                     <tr>
                         <th>Sala</th>
@@ -107,10 +110,29 @@
                             <button class="excluir">Excluir</button>
                         </td>
                     </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Administração</td>
+                        <td>Bloco 1</td>
+                        <td class="acao">
+                            <button class="editar">Editar</button>
+                            <button class="excluir">Excluir</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Administração</td>
+                        <td>Bloco 1</td>
+                        <td class="acao">
+                            <button class="editar">Editar</button>
+                            <button class="excluir">Excluir</button>
+                        </td>
+                    </tr>
                     <!-- Adicione mais linhas conforme necessário -->
                 </tbody>
             </table>
         </div>
+    
         <div class="cad-chave-modal-content-group">
             <div class="cad-chave-modal-content">
                 <div class="title-modal">
@@ -146,6 +168,9 @@
         </div>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 
     <script src="/js/cadastro-de-chaves.js" th:src="@{/js/cadastro-de-chaves.js}"></script>
     <script>
@@ -154,7 +179,7 @@
         $(document).ready(function () {
             $('#table-chaves').DataTable({
                 info: true,
-                ordering: true,
+                ordering: false,
                 paging: true,
                 dom: 'Blfrtip',
                 buttons: [
@@ -165,8 +190,6 @@
                 }
             });
         });
-
-
     </script>
 </body>
 
