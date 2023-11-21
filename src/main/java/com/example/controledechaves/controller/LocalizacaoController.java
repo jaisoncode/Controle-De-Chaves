@@ -23,13 +23,14 @@ import com.example.controledechaves.repositories.LocalizacaoRepository;
 public class LocalizacaoController {
     @Autowired
     private LocalizacaoRepository localizacaoRepository;
+   
     @PostMapping
     public Localizacao addLocalizacao(@RequestBody LocalizacaoRequestDTO newLocalizacao) {
         Localizacao localizacoes = new Localizacao(newLocalizacao);
         return localizacaoRepository.save(localizacoes);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public List<LocalizacaoResponseDTO> getAll(){
         List<LocalizacaoResponseDTO> localizacaoList = localizacaoRepository.findAll().stream().map(LocalizacaoResponseDTO::new).toList();
         return localizacaoList;

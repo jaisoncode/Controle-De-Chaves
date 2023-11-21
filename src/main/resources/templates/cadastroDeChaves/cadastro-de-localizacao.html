@@ -11,15 +11,13 @@
         rel="stylesheet">
     <!--font final -->
 
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/cadastro-de-localizacao.css}">
+   
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css">
     <!-- Outros links de estilo ou scripts que você possa ter -->
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
 
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
@@ -29,6 +27,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/cadastro-de-localizacao.css}">
+    <script src="/js/cadastro-de-localizacao.js" th:src="@{/js/cadastro-de-localizacao.js}" defer></script>
 
     <title>Document</title>
 </head>
@@ -70,48 +72,13 @@
                 </a>
             </div>
 
-            <div class="button-add-novo">
-
-                <span>
-                    <i class='bx bx-plus'></i>
-                    Nova chave
-                </span>
-            </div>
+            
         </div>
         <div class="table-list">
 
-            <table id="table-chaves" class="display" style="width:100%">
-                <thead class="title-table">
-                    <tr>
-                        <th>Sala</th>
-                        <th>Setor</th>
-                        <th>Localização</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>08</td>
-                        <td>Sala de Aula</td>
-                        <td>Bloco 2</td>
-                        <td class="acao">
-                            <button class="editar">Editar</button>
-                            <button class="excluir">Excluir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td>Administração</td>
-                        <td>Bloco 1</td>
-                        <td class="acao">
-                            <button class="editar">Editar</button>
-                            <button class="excluir">Excluir</button>
-                        </td>
-                    </tr>
-                    <!-- Adicione mais linhas conforme necessário -->
-                </tbody>
-            </table>
+           
         </div>
+
         <div class="cad-localizacao-modal-content-group">
             <div class="cad-localizacao-modal-content">
                 <div class="title-modal">
@@ -119,16 +86,15 @@
                     <i class='bx bx-x'></i>
                 </div>
 
-                <form action="" method="post">
+                <form id="cadastro-localizacao" action="/cadastro-de-localizacao" method="post">
                     <div class="inputs-form">
                         <div class="">
-                            <label for="">Nome da Localização</label>
-                            <input class="input-form" type="text" placeholder="Bloco 01">
+                            <label for="nome-localizacao">Nome da Localização</label>
+                            <input id="nome-localizacao" class="input-form" type="text" placeholder="Bloco 01">
                         </div>
                     </div>
-
                     <div class=" btn-input">
-                        <input class="input-form btn-form-add" type="submit" value="Adicionar localização">
+                        <input id="button-adicionar-localizacao" class="input-form btn-form-add" type="submit" value="Adicionar localização">
                     </div>
 
                 </form>
@@ -138,27 +104,6 @@
             </div>
         </div>
     </main>
-
-
-    <script src="/js/cadastro-de-localizacao.js" th:src="@{/js/cadastro-de-localizacao.js}"></script>
-    <script>
-        $(document).ready(function () {
-            $('#table-chaves').DataTable({
-                info: true,
-                ordering: true,
-                paging: true,
-                dom: 'lBfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ],
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json',
-                }
-            });
-        });
-
-
-    </script>
 </body>
 
 </html>
