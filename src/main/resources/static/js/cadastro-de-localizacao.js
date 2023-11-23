@@ -1,20 +1,44 @@
 buscarLocalizacoesCadastradas();
 
 const tabelaLocalizacao = document.querySelector('.table-list');
+const modalCadlocalizacao = document.querySelector('.cad-localizacao-modal-content-group');
+const formLocalizacao = document.querySelector('#cadastro-localizacao')
+const inputNomeDaLocalizacao = document.querySelector("#nome-localizacao")
+const submitLocalizacao = document.querySelector('#button-adicionar-localizacao')
+let modoEdicao = false;
+let idLocalizacao = null;
 
-// Função para buscar e exibir as localizações já cadastradas
-function buscarLocalizacoesCadastradas() {
-    fetch("http://localhost:8080/cadastro-de-localizacao/")
-        .then(response => response.json())
-        .then(data => {
+const closeModal = document.querySelector('.bx-x');
 
-            exibirLocalizacao(data);
-            console.log(data);
-        })
-        .catch(error => {
-            console.log('Erro ao buscar as localizações:', error);
-        });
-}
+closeModal.addEventListener('click', function () {
+    modalCadlocalizacao.style.display = 'none';
+    inputNomeDaLocalizacao.value = "";
+});
+
+
+submitLocalizacao.addEventListener('click', function () {
+    if (modoEdicao && idLocalizacao !== null) {
+        const localizacaoEditada = {
+            nomePredio: inputNomeDaLocalizacao.value
+            // Outros campos que você precise editar
+        };
+        atualizarLocalizacao(idLocalizacao, localizacaoEditada);
+        modoEdicao = false; // Resetando o modo para adição
+        idLocalizacao = null;
+    } else {
+        const objetoJson = {
+            nomePredio: inputNomeDaLocalizacao.value
+            // Outros campos para criar um novo item
+        };
+        cadastrarLocalizacao(objetoJson); // Chame a função para cadastrar a localização
+    }
+    modalCadlocalizacao.style.display = 'none';
+    inputNomeDaLocalizacao.value = "";
+})
+
+formLocalizacao.addEventListener("submit", function (event) {
+    event.preventDefault();
+})
 
 
 function exibirLocalizacao(data) {
@@ -31,8 +55,8 @@ function exibirLocalizacao(data) {
             <tr>
                 <td>${localizacao.nome}</td>
                 <td class="acao">
-                    <button class="editar">Editar</button>
-                    <button class="excluir">Excluir</button>
+                    <button id="btn-edt-localizacao-${localizacao.id}" class="editar">Editar</button>
+                    <button id="btn-del-localizacao-${localizacao.id}" class="excluir">Excluir</button>
                 </td>
             </tr>`;
     });
@@ -42,6 +66,7 @@ function exibirLocalizacao(data) {
 
     tabelaLocalizacao.innerHTML = novaLocalizacao;
 
+    //datables 
     $(document).ready(function () {
         const table = $('#table-chaves').DataTable({
             info: true,
@@ -60,40 +85,60 @@ function exibirLocalizacao(data) {
             $('.custom-button').html('<div id="btn-nova-chave" class="button-add-novo"><span><i class="bx bx-plus"></i>Adicione</span></div>').appendTo('.top-section-direita');
 
             const openModal = document.querySelector('.custom-button');
-            const modalCadlocalizacao = document.querySelector('.cad-localizacao-modal-content-group');
+
 
             openModal.addEventListener('click', function () {
                 modalCadlocalizacao.style.display = 'block';
             });
-
-            const closeModal = document.querySelector('.bx-x');
-
-            closeModal.addEventListener('click', function () {
-                modalCadlocalizacao.style.display = 'none';
-            });
         });
     });
+
+    data.forEach(localizacao => {
+
+        const iconEditar = document.querySelector(`#btn-edt-localizacao-${localizacao.id}`)
+        const iconDeletar = document.querySelector(`#btn-del-localizacao-${localizacao.id}`)
+
+        iconEditar.onclick = function () {
+            modalCadlocalizacao.style.display = 'block';
+            modoEdicao = true;
+            inputNomeDaLocalizacao.value = localizacao.nome;
+            idLocalizacao = localizacao.id;
+
+
+            closeModal.onclick = function () {
+                modoEdicao = null;
+                idLocalizacao = null;
+                console.log(idLocalizacao + "resetou");
+            }
+
+        }
+
+        iconDeletar.onclick = function () {
+            idLocalizacao = localizacao.id;
+            if (idLocalizacao !== null) {
+
+                deletarLocalizacao(idLocalizacao);
+                idLocalizacao = null;
+            }
+
+        }
+    })
+
 }
 
-const modalCadlocalizacao = document.querySelector('.cad-localizacao-modal-content-group');
-const formLocalizacao = document.querySelector('cadastro-localizacao')
-const inputNomeDaLocalizacao = document.querySelector("#nome-localizacao")
-const submitLocalizacao = document.querySelector('#button-adicionar-localizacao')
+// Função para buscar e exibir as localizações já cadastradas
+function buscarLocalizacoesCadastradas() {
+    fetch("http://localhost:8080/cadastro-de-localizacao/")
+        .then(response => response.json())
+        .then(data => {
 
-
-
-submitLocalizacao.addEventListener('click', function () {
-    const objetoJson = {
-        nomePredio: inputNomeDaLocalizacao.value
-    }
-   // cadastrarLocalizacao(objetoJson); // Chame a função para cadastrar a localização
-    modalCadlocalizacao.style.display = 'none';
-})
-
-submitLocalizacao.addEventListener("submit", function (event) {
-    event.preventDefault();
-})
-
+            exibirLocalizacao(data);
+            console.log(data);
+        })
+        .catch(error => {
+            console.log('Erro ao buscar as localizações:', error);
+        });
+}
 
 function cadastrarLocalizacao(objetoJson) {
     fetch("http://localhost:8080/cadastro-de-localizacao", {
@@ -109,4 +154,50 @@ function cadastrarLocalizacao(objetoJson) {
             buscarLocalizacoesCadastradas();
         })
         .catch(function (response) { console.log(response) });
+}
+
+function deletarLocalizacao(idLocalizacao) {
+    fetch(`http://localhost:8080/cadastro-de-localizacao/${idLocalizacao}`, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => {
+            if (response.ok) {
+                console.log("Sala excluída com sucesso");
+                buscarLocalizacoesCadastradas();
+
+            } else {
+                console.error("Falha ao excluir a sala");
+                alert("Você não pode deletar essa localizacao, ela está associada a uma sala");
+                buscarLocalizacoesCadastradas();
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao fazer a solicitação DELETE:", error);
+        });
+}
+
+function atualizarLocalizacao(idLocalizacao, localizacaoEditada) {
+    fetch(`http://localhost:8080/cadastro-de-localizacao/${idLocalizacao}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(localizacaoEditada)
+    })
+        .then(response => {
+            if (response.ok) {
+                console.log("localizacao atualizada com sucesso");
+                buscarLocalizacoesCadastradas();
+
+            } else {
+                console.error("Falha ao atualizar a localizacao");
+                buscarLocalizacoesCadastradas();
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao fazer a solicitação PUT:", error);
+        });
 }
