@@ -42,10 +42,10 @@ formLocalizacao.addEventListener("submit", function (event) {
 
 
 function exibirLocalizacao(data) {
-    let novaLocalizacao = `<table id="table-chaves" class="display" style="width:100%">
+    let novaLocalizacao = `<table id="table-main" class="display" style="width:100%">
     <thead class="title-table">
         <tr>
-            <th>Setor</th>
+            <th>Nome</th>
             <th>Ações</th>
         </tr>
     </thead>
@@ -68,7 +68,7 @@ function exibirLocalizacao(data) {
 
     //datables 
     $(document).ready(function () {
-        const table = $('#table-chaves').DataTable({
+        const table = $('#table-main').DataTable({
             info: true,
             ordering: false,
             paging: true,
@@ -81,7 +81,7 @@ function exibirLocalizacao(data) {
         });
 
         table.on('draw.dt', function () {
-            $('.info-text').text('Localizações');
+            $('.info-text').text('Localizações cadastradas');
             $('.custom-button').html('<div id="btn-nova-chave" class="button-add-novo"><span><i class="bx bx-plus"></i>Adicione</span></div>').appendTo('.top-section-direita');
 
             const openModal = document.querySelector('.custom-button');

@@ -30,6 +30,7 @@
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
 
+    <script src="/js/cadastro-de-setor.js" th:src="@{/js/cadastro-de-setor.js}" defer></script>
     <title>Document</title>
 </head>
 
@@ -69,42 +70,9 @@
                     </div>
                 </a>
             </div>
-
-            <div class="button-add-novo">
-                <span>
-                    <i class='bx bx-plus'></i>
-                    Novo setor
-                </span>
-            </div>
         </div>
         <div class="table-list">
 
-            <table id="table-chaves" class="display" style="width:100%">
-                <thead class="title-table">
-                    <tr>
-                        <th>Sala</th>
-                        <th>Setor</th>
-                
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>12</td>
-                        <td class="acao">
-                            <button class="editar">Editar</button>
-                            <button class="excluir">Excluir</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>12</td>
-                        <td class="acao">
-                            <button class="editar">Editar</button>
-                            <button class="excluir">Excluir</button>
-                        </td>
-                    </tr>
-                    <!-- Adicione mais linhas conforme necessário -->
-                </tbody>
-            </table>
         </div>
 
         <div class="cad-setor-modal-content-group">
@@ -114,46 +82,23 @@
                     <i class='bx bx-x'></i>
                 </div>
 
-                <form action="" method="post">
+                <form id="cadastro-setor" action="" method="post">
                     <div class="inputs-form">
                         <div class="">
-                            <label for="">Nome do setor</label>
-                            <input class="input-form" type="text" placeholder="Laboratório">
+                            <label for="nome-setor">Nome do setor</label>
+                            <input id="nome-setor" class="input-form" type="text" placeholder="Laboratório">
                         </div>
                     </div>
 
-                    <div class=" btn-input">
-                        <input class="input-form btn-form-add" type="submit" value="Adicionar setor">
+                    <div class="btn-input">
+                        <button id="button-adicionar-setor" class="input-form btn-form-add" type="submit"> Adicionar Setor</button>
                     </div>
 
                 </form>
-
-
-
             </div>
         </div>
     </main>
 
-
-    <script src="/js/cadastro-de-setor.js" th:src="@{/js/cadastro-de-setor.js}"></script>
-    <script>
-        $(document).ready(function () {
-            $('#table-chaves').DataTable({
-                info: true,
-                ordering: true,
-                paging: true,
-                dom: 'lBfrtip',
-                buttons: [
-                    'copy', 'csv', 'excel', 'pdf', 'print'
-                ],
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json',
-                }
-            });
-        });
-
-
-    </script>
 </body>
 
 </html>

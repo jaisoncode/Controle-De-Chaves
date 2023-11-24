@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.controledechaves.dtos.LocalizacaoRequestDTO;
 import com.example.controledechaves.dtos.SetorRequestDTO;
 import com.example.controledechaves.dtos.SetorResponseDTO;
 
@@ -54,9 +53,9 @@ public class SetorController {
 
     @PutMapping("{id}")
     public ResponseEntity<String> updateSetor(@PathVariable Long id,
-            @RequestBody LocalizacaoRequestDTO localizacaoRequestDTO) {
+            @RequestBody SetorRequestDTO setorRequestDTO) {
         Setor setorEditado = setorRepository.getReferenceById(id);
-        setorEditado.setNome(localizacaoRequestDTO.nomePredio());
+        setorEditado.setNome(setorRequestDTO.nome());
 
         setorRepository.save(setorEditado);
         return ResponseEntity.ok("setor atualizado com sucesso");

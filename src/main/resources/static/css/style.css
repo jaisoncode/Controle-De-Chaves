@@ -154,19 +154,19 @@ input {
     display: flex;
 }
 
-#table-chaves th,
-#table-chaves td {
+#table-main th,
+#table-main td {
     padding: 0rem 8rem;
     height: 5rem;
     border-bottom: var(--line-color) solid 1px;
 
 }
 
-#table-chaves tbody tr {
+#table-main tbody tr {
     background-color: var(--white-color);
 }
 
-#table-chaves tbody tr:hover {
+#table-main tbody tr:hover {
     background-color: var(--background-gray);
 }
 
@@ -175,7 +175,7 @@ input {
 }
 
 
-#table-chaves_filter input[type="search"] {
+#table-main_filter input[type="search"] {
     color: var(--font-primary);
     background-color: #EFF2F7;
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
@@ -187,7 +187,7 @@ input {
 }
 
 
-#table-chaves_filter input[type="search"]::placeholder {
+#table-main_filter input[type="search"]::placeholder {
     color: #6D7175;
 
 }
