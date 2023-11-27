@@ -21,4 +21,10 @@ public class CadastroDeChavesPaginationController {
     public String cadastroDeLocalizacaoPage() {
         return "cadastroDeChaves/cadastro-de-localizacao";
     }
+
+    @GetMapping("/painel_de_chaves")
+    public String painelDeChaves(){
+        return "painelDeChaves/painel_de_chaves";
+    }
+
 }
