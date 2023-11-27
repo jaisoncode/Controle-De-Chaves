@@ -1,4 +1,4 @@
-package com.example.controledechaves.dtos;
+package com.example.controledechaves.dtos.chave;
 
 import com.example.controledechaves.model.Localizacao;
 import com.example.controledechaves.model.Setor;

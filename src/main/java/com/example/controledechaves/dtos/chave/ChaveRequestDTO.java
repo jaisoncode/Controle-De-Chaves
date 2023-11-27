@@ -1,4 +1,4 @@
-package com.example.controledechaves.dtos;
+package com.example.controledechaves.dtos.chave;
 
 public record ChaveRequestDTO(String nome, Long setor, Long localizacao) {
 

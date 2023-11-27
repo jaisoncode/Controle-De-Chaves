@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.controledechaves.dtos.SetorRequestDTO;
-import com.example.controledechaves.dtos.SetorResponseDTO;
-
+import com.example.controledechaves.dtos.setor.SetorRequestDTO;
+import com.example.controledechaves.dtos.setor.SetorResponseDTO;
 import com.example.controledechaves.model.Setor;
 import com.example.controledechaves.repositories.SetorRepository;
 

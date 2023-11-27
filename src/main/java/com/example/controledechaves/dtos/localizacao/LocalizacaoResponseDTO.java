@@ -1,4 +1,4 @@
-package com.example.controledechaves.dtos;
+package com.example.controledechaves.dtos.localizacao;
 
 import com.example.controledechaves.model.Localizacao;
 

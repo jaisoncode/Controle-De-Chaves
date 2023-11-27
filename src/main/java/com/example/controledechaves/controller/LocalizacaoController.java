@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.controledechaves.dtos.LocalizacaoRequestDTO;
-import com.example.controledechaves.dtos.LocalizacaoResponseDTO;
+
+import com.example.controledechaves.dtos.localizacao.LocalizacaoRequestDTO;
+import com.example.controledechaves.dtos.localizacao.LocalizacaoResponseDTO;
 import com.example.controledechaves.model.Localizacao;
 import com.example.controledechaves.repositories.LocalizacaoRepository;
 

@@ -1,6 +1,6 @@
 package com.example.controledechaves.model;
 
-import com.example.controledechaves.dtos.SetorRequestDTO;
+import com.example.controledechaves.dtos.setor.SetorRequestDTO;
 
 import jakarta.persistence.*;
 

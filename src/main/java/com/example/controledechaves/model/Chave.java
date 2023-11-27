@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import com.example.controledechaves.dtos.ChaveRequestDTO;
+import com.example.controledechaves.dtos.chave.ChaveRequestDTO;
 
 @Entity
 @Table(name = "chaves")

@@ -1,4 +1,4 @@
-package com.example.controledechaves.dtos;
+package com.example.controledechaves.dtos.localizacao;
 
 public record LocalizacaoRequestDTO(String nomePredio) {
     @Override

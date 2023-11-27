@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.controledechaves.dtos.ChaveRequestDTO;
-import com.example.controledechaves.dtos.ChaveResponseDTO;
+import com.example.controledechaves.dtos.chave.ChaveRequestDTO;
+import com.example.controledechaves.dtos.chave.ChaveResponseDTO;
 import com.example.controledechaves.model.Chave;
 import com.example.controledechaves.model.Localizacao;
 import com.example.controledechaves.model.Setor;
