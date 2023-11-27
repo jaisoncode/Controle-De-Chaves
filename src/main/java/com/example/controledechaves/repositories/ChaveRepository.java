@@ -10,7 +10,7 @@ import com.example.controledechaves.model.Setor;
 @Repository
 public interface ChaveRepository extends JpaRepository<Chave, Long>{
     List<Chave> findByLocalizacao(Localizacao localizacao);
-    List<Chave> findByLocalizacao(Setor setor);
+    List<Chave> findBySetor(Setor setor);
 }
     
 

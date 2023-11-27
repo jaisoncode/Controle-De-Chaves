@@ -1,4 +1,5 @@
 package com.example.controledechaves.controller;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,16 +35,17 @@ public class ChavesController {
     private SetorRepository setorRepository;
     @Autowired
     private LocalizacaoRepository localizacaoRepository;
-    
 
     @PostMapping("setor/{idSetor}/localizacao/{idLocalizacao}")
-    public Chave addChave(@RequestBody ChaveRequestDTO chaveRequestDTO, @PathVariable Long idSetor, @PathVariable Long idLocalizacao) {
-        
+    public Chave addChave(@RequestBody ChaveRequestDTO chaveRequestDTO, @PathVariable Long idSetor,
+            @PathVariable Long idLocalizacao) {
+
         Setor setor = setorRepository.findById(idSetor)
                 .orElseThrow(() -> new EntityNotFoundException("Setor não encontrado com o id: " + idSetor));
 
         Localizacao localizacao = localizacaoRepository.findById(idLocalizacao)
-                .orElseThrow(() -> new EntityNotFoundException("Localizacao não encontrada com o id: " + idLocalizacao));
+                .orElseThrow(
+                        () -> new EntityNotFoundException("Localizacao não encontrada com o id: " + idLocalizacao));
         Chave novaChave = new Chave();
         novaChave.setNome(chaveRequestDTO.nome());
         novaChave.setSetor(setor);
@@ -52,7 +54,6 @@ public class ChavesController {
         return chaveRepository.save(novaChave);
     }
 
-    
     @GetMapping("/")
     public List<ChaveResponseDTO> getAll() {
         List<Chave> chaves = chaveRepository.findAll();
@@ -62,8 +63,7 @@ public class ChavesController {
                     chave.getIdSala(),
                     chave.getNome(),
                     chave.getSetor(),
-                    chave.getLocalizacao()
-            ));
+                    chave.getLocalizacao()));
         }
         return salaResponseDTOs;
     }
@@ -73,12 +73,11 @@ public class ChavesController {
         Chave chave = chaveRepository.getReferenceById(id);
 
         // Remove a referência da Localizacao
-       // Localizacao localizacao = chave.getLocalizacao();
-        //Setor setor = chave.getSetor();
+        // Localizacao localizacao = chave.getLocalizacao();
+        // Setor setor = chave.getSetor();
         chave.setSetor(null);
         chave.setLocalizacao(null);
         chaveRepository.save(chave); // Atualiza a sala sem a referência de Localizacao
-
 
         // Finalmente, exclui a Sala
         chaveRepository.delete(chave);
@@ -86,27 +85,28 @@ public class ChavesController {
         return ResponseEntity.ok("Sala excluída com sucesso");
     }
 
-     @PutMapping("{id}")
-    public ResponseEntity<String> updateSala(@PathVariable Long id, @RequestBody ChaveRequestDTO chaveRequestDTO) {
+    @PutMapping("{id}")
+    public ResponseEntity<String> updateChave(@PathVariable Long id, @RequestBody ChaveRequestDTO chaveRequestDTO) {
         Chave chave = chaveRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Sala não encontrada com o id: " + id));
 
-
         chave.setNome(chaveRequestDTO.getNome());
- 
+
         // Atualiza a localização da sala se a nova localização não for nula
         if (chaveRequestDTO.getLocalizacao() != null) {
             Localizacao localizacao = localizacaoRepository.findById(chaveRequestDTO.getLocalizacao())
-                    .orElseThrow(() -> new EntityNotFoundException("Localização não encontrada com o id: " + chaveRequestDTO.getLocalizacao()));
+                    .orElseThrow(() -> new EntityNotFoundException(
+                            "Localização não encontrada com o id: " + chaveRequestDTO.getLocalizacao()));
             chave.setLocalizacao(localizacao);
         }
 
         if (chaveRequestDTO.getSetor() != null) {
-            Setor setor  = setorRepository.findById(chaveRequestDTO.getSetor())
-                    .orElseThrow(() -> new EntityNotFoundException("setor não encontrada com o id: " + chaveRequestDTO.getSetor()));
+            Setor setor = setorRepository.findById(chaveRequestDTO.getSetor())
+                    .orElseThrow(() -> new EntityNotFoundException(
+                            "setor não encontrada com o id: " + chaveRequestDTO.getSetor()));
             chave.setSetor(setor);
         }
-        
+
         chaveRepository.save(chave);
 
         return ResponseEntity.ok("Sala atualizada com sucesso");

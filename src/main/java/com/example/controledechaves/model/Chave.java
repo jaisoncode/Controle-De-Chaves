@@ -12,7 +12,7 @@ public class Chave {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idSala;
+    private Long idChave;
     @Column(name = "nome")
     private String nome;
     
@@ -37,11 +37,11 @@ public class Chave {
     }
 
     public Long getIdSala() {
-        return idSala;
+        return idChave;
     }
 
     public void setIdSala(Long idSala) {
-        this.idSala = idSala;
+        this.idChave = idSala;
     }
 
     public String getNome() {
