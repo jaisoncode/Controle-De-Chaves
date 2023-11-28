@@ -12,11 +12,11 @@
     <!--font final -->
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/cadastro-de-chaves.css}">
+    <link rel="stylesheet" th:href="@{/css/painelDeChaves/painel-de-chaves.css}">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css">
-    <!-- Outros links de estilo ou scripts que você possa ter -->
+    <!-- Outros links de estilo ou scripts que possa ter -->
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -29,7 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
-    <script src="/js/cadastro-de-chaves.js" th:src="@{/js/cadastro-de-chaves.js}" defer></script>
+    <script src="/js/painelDeChaves/painel-de-chaves.js" th:src="@{/js/painelDeChaves/painel-de-chaves.js}" defer></script>
 
     <title>Document</title>
 </head>
@@ -40,7 +40,7 @@
             <div class="itens-top-nav">
                 <ul>
                     <a href="/page/cadastro-de-chaves" class="item-top-nav"> Cadastro de chaves</a>
-                    <a href="/page/painel-de-chaves" class="item-top-nav-active"> Painel de chaves</a>
+                    <a href="/page/painel_de_chaves" class="item-top-nav-active"> Painel de chaves</a>
                     <a href="/controle-de-chaves" class="item-top-nav"> Controle de chaves</a>
                 </ul>
             </div>
@@ -52,7 +52,7 @@
     </header>
 
     <main class="page-content main-conteudo">
-        
+
         <div class="table-list">
 
         </div>
@@ -60,49 +60,29 @@
         <div class="cad-chave-modal-content-group">
             <div class="cad-chave-modal-content">
                 <div class="title-modal">
-                    <span>Crie uma chave</span>
+                    <span>Retirada de chave</span>
                     <i id="fechar-modal" class='bx bx-x'></i>
+                </div>
+
+                <div class="">
+                    <span id="titulo-de-chave">Laboratorio de redes de computadores</span>
                 </div>
 
                 <form id="cadastro-de-chave" action="" method="post">
                     <div class="inputs-form">
                         <div class="">
-                            <label for="input-chave-nome">Nome da chave</label>
-                            <input id="input-chave-nome" class="input-form" type="text" placeholder="Sala 04">
+                            <label for="input-responsavel-nome">Nome do responsável</label>
+                            <input id="input-responsavel-nome" class="input-form" type="text"
+                                placeholder="Nome no responsável">
                         </div>
 
-
-                        <div>
-                            <label for="select-setor">Setor</label>
-                            <select id="select-setor" name="setor" class="input-form">
-                                <option disabled selected hidden>Selecione um setor</option>
-                                
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="select-localizacao">Localização</label>
-                            <select id="select-localizacao" class="input-form">
-                                <option disabled selected hidden>Selecione uma Localização</option>
-                                
-                            </select>
-                        </div>
-                        
-
-    
-                       
                     </div>
 
-                    
                     <div class="btn-input">
-                        <button id="button-adicionar-chave" class="input-form btn-form-add" type="submit">Adicionar
+                        <button id="button-adicionar-chave" class="input-form btn-form-add" type="submit">Entregar
                             chave</button>
                     </div>
-
                 </form>
-
-
-
             </div>
         </div>
     </main>
