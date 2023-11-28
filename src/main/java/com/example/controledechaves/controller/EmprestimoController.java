@@ -1,7 +1,10 @@
 package com.example.controledechaves.controller;
+
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -85,7 +88,7 @@ public class EmprestimoController {
         return emprestimoResponseDTOs;
     }
 
-   @GetMapping("/do-dia")
+    @GetMapping("/do-dia")
     public List<Emprestimo> getEmprestimosDoDia() {
         LocalDate dataAtual = LocalDate.now(); // Obtém a data atual
 
@@ -93,13 +96,21 @@ public class EmprestimoController {
     }
 
     @PutMapping("{id}")
-    public void updateEmprestimo(@PathVariable Long id, @RequestBody EmprestimoRequestDTO emprestimoRequestDTO) {
+    public void updateEmprestimo(@PathVariable Long id, @RequestBody Map<String, Object> updates) {
 
         Emprestimo emprestimo = emprestimoRepository.getReferenceById(id);
 
-        emprestimo.setStatus(emprestimoRequestDTO.status());
-        emprestimoRepository.save(emprestimo);
+        if (updates.containsKey("status")) {
+            emprestimo.setStatus((String) updates.get("status"));
+        }
+        if (updates.containsKey("DataDevolucao")) {
+            emprestimo.setDataDevolucao(LocalDate.parse((String) updates.get("DataDevolucao")));
+        }
+        if (updates.containsKey("horarioDevolucao")) {
+            emprestimo.setHorarioDevolucao(LocalTime.parse((String) updates.get("horarioDevolucao")));
+        }
 
+        emprestimoRepository.save(emprestimo);
     }
 
     @GetMapping("/do-dia-em-uso/{status}")

@@ -103,7 +103,9 @@ input {
 }
 
 .select-cad,
-.select-cad-active {
+.select-cad-active,
+.select-cad-controle-de-chaves,
+.select-cad-controle-de-chaves-active {
     width: 10.9rem;
     height: 3.3rem;
     font-weight: 500;
@@ -114,16 +116,46 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
-.select-cad:hover {
+.select-cad-controle-de-chaves,
+.select-cad-controle-de-chaves-active {
+    padding-left: .6rem;
+    justify-content: left;
+}
+
+
+.select-cad:hover,
+.select-cad-controle-de-chaves:hover {
     opacity: 1;
 }
 
-.select-cad-active {
+.select-cad-active,
+.select-cad-controle-de-chaves-active {
     font-weight: 600;
     opacity: 1;
 }
+
+.count-table {
+    position: absolute;
+    top: .2rem;
+    right: .2rem;
+    background: var(--font-second);
+    color: var(--white-color);
+    border-radius: 50%;
+    width: 13px;
+    height: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.count-table span {
+    font-size: 8px;
+}
+
 
 .table-list {
     border-radius: .5rem;
