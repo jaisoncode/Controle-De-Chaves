@@ -26,6 +26,9 @@ public class Chave {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Localizacao localizacao;
 
+    @Column(name = "status")
+    private String status;
+
     public Chave() {
 
     }
@@ -34,14 +37,25 @@ public class Chave {
         this.nome = chave.nome();
         this.setor = setor;
         this.localizacao = localizacao;
+        this.status = chave.status();
     }
 
-    public Long getIdSala() {
+  
+
+    public Long getIdChave() {
         return idChave;
     }
 
-    public void setIdSala(Long idSala) {
-        this.idChave = idSala;
+    public void setIdChave(Long idChave) {
+        this.idChave = idChave;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getNome() {

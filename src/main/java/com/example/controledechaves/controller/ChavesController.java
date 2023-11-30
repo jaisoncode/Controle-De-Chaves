@@ -2,6 +2,7 @@ package com.example.controledechaves.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.controledechaves.dtos.chave.ChaveRequestDTO;
 import com.example.controledechaves.dtos.chave.ChaveResponseDTO;
+
 import com.example.controledechaves.model.Chave;
+
 import com.example.controledechaves.model.Localizacao;
 import com.example.controledechaves.model.Setor;
 import com.example.controledechaves.repositories.ChaveRepository;
@@ -36,9 +39,8 @@ public class ChavesController {
     private SetorRepository setorRepository;
     @Autowired
     private LocalizacaoRepository localizacaoRepository;
-    @Autowired 
+    @Autowired
     private EmprestimoRepository emprestimoRepository;
-
 
     @PostMapping("setor/{idSetor}/localizacao/{idLocalizacao}")
     public Chave addChave(@RequestBody ChaveRequestDTO chaveRequestDTO, @PathVariable Long idSetor,
@@ -54,6 +56,7 @@ public class ChavesController {
         novaChave.setNome(chaveRequestDTO.nome());
         novaChave.setSetor(setor);
         novaChave.setLocalizacao(localizacao);
+        novaChave.setStatus(chaveRequestDTO.status());
 
         return chaveRepository.save(novaChave);
     }
@@ -61,23 +64,41 @@ public class ChavesController {
     @GetMapping("/")
     public List<ChaveResponseDTO> getAll() {
         List<Chave> chaves = chaveRepository.findAll();
-        List<ChaveResponseDTO> salaResponseDTOs = new ArrayList<>();
+        List<ChaveResponseDTO> chaveResponseDTOs = new ArrayList<>();
         for (Chave chave : chaves) {
-            salaResponseDTOs.add(new ChaveResponseDTO(
-                    chave.getIdSala(),
+            chaveResponseDTOs.add(new ChaveResponseDTO(
+                    chave.getIdChave(),
                     chave.getNome(),
                     chave.getSetor(),
-                    chave.getLocalizacao()));
+                    chave.getLocalizacao(),
+                    chave.getStatus()));
         }
-        return salaResponseDTOs;
+        return chaveResponseDTOs;
     }
+
+    @GetMapping("/status/{status}")
+    public List<ChaveResponseDTO> getChavesByStatus(@PathVariable String status) {
+        List<Chave> chaves = chaveRepository.findByStatus(status);
+        List<ChaveResponseDTO> chaveResponseDTO = new ArrayList<>();
+        for (Chave chave : chaves) {
+            chaveResponseDTO.add(new ChaveResponseDTO(
+                    chave.getIdChave(),
+                    chave.getNome(),
+                    chave.getSetor(),
+                    chave.getLocalizacao(),
+                    chave.getStatus()));
+        }
+        return chaveResponseDTO;
+    }
+
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteChave(@PathVariable Long id) {
         Chave chave = chaveRepository.getReferenceById(id);
 
         // Verifica se a chave está associada a um empréstimo
-        boolean chaveEmUso = emprestimoRepository.existsByChaveAndStatus(chave , "Em uso");
+        boolean chaveEmUso = emprestimoRepository.existsByChaveAndStatus(chave, "Em uso");
 
         if (chaveEmUso) {
             return ResponseEntity.badRequest().body("Chave em uso, impossível apagar");
@@ -116,9 +137,23 @@ public class ChavesController {
             chave.setSetor(setor);
         }
 
+        chave.setStatus(chaveRequestDTO.status());
+
         chaveRepository.save(chave);
 
         return ResponseEntity.ok("Sala atualizada com sucesso");
+    }
+
+    @PutMapping("/status_da_chave/{id}")
+    public void updateStatusDaChave(@PathVariable Long id, @RequestBody Map<String, Object> updates) {
+
+        Chave chave = chaveRepository.getReferenceById(id);
+
+        if (updates.containsKey("status")) {
+            chave.setStatus((String) updates.get("status"));
+        }
+    
+        chaveRepository.save(chave);
     }
 
 }

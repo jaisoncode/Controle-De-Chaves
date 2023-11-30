@@ -1,6 +1,7 @@
 buscarEmprestimosEmUso();
 buscarEmprestimosDevolvidos();
 buscarEmprestimosPendentes();
+buscarChavesCadastradasPorStatusDisponivel();
 
 const tabelaChave = document.querySelector('.table-list');
 const modalConfirmDevolucao = document.querySelector('.confirm-devolucao-modal-content-group');
@@ -148,7 +149,7 @@ function buscarEmprestimosEmUso() {
     fetch("http://localhost:8080/emprestimos/status/Em%20uso")
         .then(response => response.json())
         .then(data => {
-
+            document.querySelector('#count-em-uso').innerHTML = data.length;
             exibirEmprestimosEmUso(data);
             console.log(data);
         })
@@ -184,6 +185,20 @@ function buscarEmprestimosPendentes() {
             console.log('Erro ao buscar as chaves:', error);
         });
 }
+
+function buscarChavesCadastradasPorStatusDisponivel() {
+    fetch("http://localhost:8080/cadastro-de-chaves/status/Disponivel")
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector('#count-disponivel').innerHTML = data.length;
+            exibirChaves(data);
+            console.log(data);
+        })
+        .catch(error => {
+            console.log('Erro ao buscar as chaves:', error);
+        });
+}
+
 
 
 

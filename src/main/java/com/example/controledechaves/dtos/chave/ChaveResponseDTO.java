@@ -3,7 +3,7 @@ package com.example.controledechaves.dtos.chave;
 import com.example.controledechaves.model.Localizacao;
 import com.example.controledechaves.model.Setor;
 
-public record ChaveResponseDTO(Long id, String nome, Setor setor, Localizacao localizacao) {
+public record ChaveResponseDTO(Long id, String nome, Setor setor, Localizacao localizacao, String status) {
     
     @Override
     public Long id() {

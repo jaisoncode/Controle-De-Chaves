@@ -1,6 +1,6 @@
 buscarEmprestimosEmUso();
 buscarEmprestimosDevolvidos();
-buscarEmprestimosPendentes();
+buscarChavesCadastradasPorStatusDisponivel()
 
 const tabelaChave = document.querySelector('.table-list');
 const modalConfirmDevolucao = document.querySelector('.confirm-devolucao-modal-content-group');
@@ -104,10 +104,12 @@ function exibirEmprestimosEmUso(data) {
             responsavelDaDevolucao.innerHTML = emprestimo.nomeDoResponsavel;
             chaveDevolvida.innerHTML = emprestimo.chave.nome;
             idEmprestimo = emprestimo.id;
+            idChave = emprestimo.chave.idChave;
 
             btnCancelDevolucao.onclick = function () {
                 modalConfirmDevolucao.style.display = "none";
                 idEmprestimo = null;
+                idChave = null;
             }
 
             btnConfirmDevoluco.onclick = function () {
@@ -117,6 +119,11 @@ function exibirEmprestimosEmUso(data) {
                         horarioDevolucao: horarioSaidaFormatado,
                         status: "Devolvido"
                     }
+
+                    const ChaveObjetoJson = {
+                        status: "Disponivel"
+                    }
+                    fazerEmprestimoDeChaveAlteraStatusDaChave(idChave, ChaveObjetoJson)
                     console.log(objetoJson);
                     console.log(idEmprestimo);
                     fazerDevolução(idEmprestimo, objetoJson);
@@ -165,11 +172,13 @@ function fazerDevolução(idEmprestimo, objetoJson) {
                 console.log("localizacao atualizada com sucesso");
                 buscarEmprestimosEmUso();
                 buscarEmprestimosDevolvidos();
+                buscarChavesCadastradasPorStatusDisponivel();
 
             } else {
                 console.error("Falha ao atualizar a localizacao");
                 buscarEmprestimosEmUso();
                 buscarEmprestimosDevolvidos();
+                buscarChavesCadastradasPorStatusDisponivel();
             }
         })
         .catch(error => {
@@ -191,17 +200,40 @@ function buscarEmprestimosDevolvidos() {
         });
 }
 
-function buscarEmprestimosPendentes() {
-    fetch("http://localhost:8080/emprestimos/status/Pendente")
+
+
+function buscarChavesCadastradasPorStatusDisponivel() {
+    fetch("http://localhost:8080/cadastro-de-chaves/status/Disponivel")
         .then(response => response.json())
         .then(data => {
-            document.querySelector("#count-pendentes").innerHTML = data.length;
+            document.querySelector('#count-disponivel').innerHTML = data.length;
+            console.log(data);
         })
         .catch(error => {
             console.log('Erro ao buscar as chaves:', error);
         });
 }
 
+function fazerEmprestimoDeChaveAlteraStatusDaChave(idChave, chaveObjetoJson) {
+    fetch(`http://localhost:8080/cadastro-de-chaves/status_da_chave/${idChave}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(chaveObjetoJson)
+    })
+        .then(response => {
+            if (response.ok) {
+                console.log("status de chave atualizada com sucesso");
+            } else {
+                console.error("Falha ao atualizar a status de chave");
+            }
+            buscarEmprestimosEmUso();
+        })
+        .catch(error => {
+            console.error("Erro ao fazer a solicitação PUT:", error);
+        });
+}
 
 
 

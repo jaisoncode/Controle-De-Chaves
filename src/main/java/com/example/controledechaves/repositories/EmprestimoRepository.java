@@ -25,15 +25,13 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
 
     boolean existsByChaveAndStatus(Chave chave, String emUso);
 
-   // @Query("SELECT e FROM Emprestimo e WHERE e.status = 'em uso'")
-   // List<Emprestimo> findEmprestimosEmAndamento();
+    // @Query("SELECT e FROM Emprestimo e WHERE e.status = 'em uso'")
+    // List<Emprestimo> findEmprestimosEmAndamento();
 
-   // @Query("SELECT e FROM EmprestimoDe e WHERE e.status = 'Devoldido'")
-   // List<Emprestimo> findEmprestimosDevolvidos();
+    // @Query("SELECT e FROM EmprestimoDe e WHERE e.status = 'Devoldido'")
+    // List<Emprestimo> findEmprestimosDevolvidos();
 
-   // @Query("SELECT e FROM EmprestimoDe e WHERE e.status = 'em andamento' AND e.horarioDevolucao > :horarioAtual")
-   // List<Emprestimo> findEmprestimosPendentes(LocalDateTime horarioAtual);
+    // @Query("SELECT e FROM EmprestimoDe e WHERE e.status = 'em andamento' AND
+    // e.horarioDevolucao > :horarioAtual")
+    // List<Emprestimo> findEmprestimosPendentes(LocalDateTime horarioAtual);
 }
-
-    
-

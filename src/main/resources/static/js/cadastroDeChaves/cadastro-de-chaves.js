@@ -36,6 +36,7 @@ submitChave.addEventListener('click', function () {
             nome: inputNomeDaChave.value,
             setor: selectSetor.value,
             localizacao: selectLocalizacao.value
+            
             // Outros campos que você precise editar
         };
         atualizarChave(idChave, NovaChaveEditada);
@@ -45,7 +46,8 @@ submitChave.addEventListener('click', function () {
         const objetoJson = {
             nome: inputNomeDaChave.value,
             setor: selectSetor.value,
-            localizacao: selectLocalizacao.value
+            localizacao: selectLocalizacao.value,
+            status: "Disponível"
             // Outros campos para criar um novo item
         };
         idSetor = selectSetor.value;
