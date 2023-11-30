@@ -29,7 +29,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
-    <script src="/js/painelDeChaves/painel-de-chaves.js" th:src="@{/js/painelDeChaves/painel-de-chaves.js}" defer></script>
+    <script src="/js/painelDeChaves/painel-de-chaves.js" th:src="@{/js/painelDeChaves/painel-de-chaves.js}"
+        defer></script>
 
     <title>Document</title>
 </head>
@@ -41,7 +42,6 @@
                 <ul>
                     <a href="/page/cadastro-de-chaves" class="item-top-nav"> Cadastro de chaves</a>
                     <a href="/page/painel_de_chaves" class="item-top-nav-active"> Painel de chaves</a>
-                    <a href="/page/controle_de_chaves" class="item-top-nav"> Controle de chaves</a>
                 </ul>
             </div>
             <div class="perfil-top-nav">
@@ -52,10 +52,43 @@
     </header>
 
     <main class="page-content main-conteudo">
-
-        <div class="table-list">
+        <div class="container-seletores-de-cadastro">
+            <div class="seletores-de-cadastro">
+                <a href="/page/painel_de_chaves">
+                    <div class="select-cad-controle-de-chaves-active">
+                        <div class="count-table">
+                            <span id="count-pendentes">0</span>
+                        </div>
+                        <span>Disponível</span>
+                    </div>
+                </a>
+                <a href="emprestimosEmUso">
+                    <div class="select-cad-controle-de-chaves">
+                        <div class="count-table">
+                            <span id="count-em-uso">0</span>
+                        </div>
+                        <span>Em uso</span>
+                    </div>
+                </a>
+                <a href="emprestimosDevolvidos">
+                    <div class="select-cad-controle-de-chaves">
+                        <div class="count-table">
+                            <span id="count-devolvidos">0</span>
+                        </div>
+                        <span id="count-devolvidos">Devolvidos</span>
+                    </div>
+                </a>
+            
+            </div>
 
         </div>
+        
+            
+            <div class="table-list">
+                
+            </div>
+       
+
 
         <div class="cad-chave-modal-content-group">
             <div class="cad-chave-modal-content">

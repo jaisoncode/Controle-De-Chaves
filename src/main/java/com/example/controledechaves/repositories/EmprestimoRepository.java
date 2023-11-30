@@ -23,6 +23,8 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
 
     List<Emprestimo> findByDataSaidaAndStatus(LocalDate dataSaida, String status);
 
+    boolean existsByChaveAndStatus(Chave chave, String emUso);
+
    // @Query("SELECT e FROM Emprestimo e WHERE e.status = 'em uso'")
    // List<Emprestimo> findEmprestimosEmAndamento();
 

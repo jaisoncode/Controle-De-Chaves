@@ -1,5 +1,6 @@
 buscarEmprestimosEmUso();
 buscarEmprestimosDevolvidos();
+buscarEmprestimosPendentes();
 
 const tabelaChave = document.querySelector('.table-list');
 const modalConfirmDevolucao = document.querySelector('.confirm-devolucao-modal-content-group');
@@ -163,27 +164,16 @@ function fazerDevolução(idEmprestimo, objetoJson) {
             if (response.ok) {
                 console.log("localizacao atualizada com sucesso");
                 buscarEmprestimosEmUso();
+                buscarEmprestimosDevolvidos();
 
             } else {
                 console.error("Falha ao atualizar a localizacao");
                 buscarEmprestimosEmUso();
+                buscarEmprestimosDevolvidos();
             }
         })
         .catch(error => {
             console.error("Erro ao fazer a solicitação PUT:", error);
-        });
-}
-
-function buscarEmprestimosPendentes() {
-    fetch("http://localhost:8080/emprestimos/status/Pendentes")
-        .then(response => response.json())
-        .then(data => {
-
-            exibirEmprestimosPendentes(data);
-            console.log(data);
-        })
-        .catch(error => {
-            console.log('Erro ao buscar as chaves:', error);
         });
 }
 
@@ -200,6 +190,18 @@ function buscarEmprestimosDevolvidos() {
             console.log('Erro ao buscar as chaves:', error);
         });
 }
+
+function buscarEmprestimosPendentes() {
+    fetch("http://localhost:8080/emprestimos/status/Pendente")
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector("#count-pendentes").innerHTML = data.length;
+        })
+        .catch(error => {
+            console.log('Erro ao buscar as chaves:', error);
+        });
+}
+
 
 
 

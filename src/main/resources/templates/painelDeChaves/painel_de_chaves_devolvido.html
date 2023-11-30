@@ -12,11 +12,11 @@
     <!--font final -->
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/controleDeChaves/controle-de-chaves.css}">
+    <link rel="stylesheet" th:href="@{/css/painelDeChaves/painel-de-chaves.css}">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css">
-    <!-- Outros links de estilo ou scripts que você possa ter -->
+    <!-- Outros links de estilo ou scripts que possa ter -->
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
@@ -29,7 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
-    <script src="/js/controleDeChaves/controle-de-chaves.js" th:src="@{/js/controleDeChaves/controle-de-chaves.js}"
+    <script src="/js/painelDeChaves/painel-de-chaves-devolvidos.js" th:src="@{/js/painelDeChaves/painel-de-chaves-devolvidos.js}"
         defer></script>
 
     <title>Document</title>
@@ -41,8 +41,7 @@
             <div class="itens-top-nav">
                 <ul>
                     <a href="/page/cadastro-de-chaves" class="item-top-nav"> Cadastro de chaves</a>
-                    <a href="/page/painel_de_chaves" class="item-top-nav"> Painel de chaves</a>
-                    <a href="/page/controle_de_chaves" class="item-top-nav-active"> Controle de chaves</a>
+                    <a href="/page/painel_de_chaves" class="item-top-nav-active"> Painel de chaves</a>
                 </ul>
             </div>
             <div class="perfil-top-nav">
@@ -55,64 +54,38 @@
     <main class="page-content main-conteudo">
         <div class="container-seletores-de-cadastro">
             <div class="seletores-de-cadastro">
-                <a href="cadastro-de-chaves">
-                    <div class="select-cad-controle-de-chaves-active">
+                <a href="/page/painel_de_chaves">
+                    <div class="select-cad-controle-de-chaves">
                         <div class="count-table">
-                            <span id="count-em-uso">10</span>
+                            <span id="count-pendentes">0</span>
+                        </div>
+                        <span>Disponível</span>
+                    </div>
+                </a>
+                <a href="emprestimosEmUso">
+                    <div class="select-cad-controle-de-chaves">
+                        <div class="count-table">
+                            <span id="count-em-uso">0</span>
                         </div>
                         <span>Em uso</span>
                     </div>
                 </a>
-                <a href="cadastro-de-setor">
-                    <div class="select-cad-controle-de-chaves">
+                <a href="emprestimosDevolvidos">
+                    <div class="select-cad-controle-de-chaves-active">
                         <div class="count-table">
-                            <span id="count-devolvidos">12</span>
+                            <span id="count-devolvidos">0</span>
                         </div>
-                        <span>Devolvidos</span>
+                        <span id="count-devolvidos">Devolvidos</span>
                     </div>
                 </a>
-                <a href="cadastro-de-localizacao">
-                    <div class="select-cad-controle-de-chaves">
-                        <div class="count-table">
-                            <span>12</span>
-                        </div>
-                        <span>Pendentes</span>
-                    </div>
-                </a>
+                
             </div>
 
         </div>
 
         <div class="table-list">
-
-        </div>
-
-        <div class="confirm-devolucao-modal-content-group">
-            <div class="confirm-devolucao-modal-content">
-                <div class="title-modal">
-                    <span>Confirmação de devolução</span>
-                    <i id="fechar-modal" class='bx bx-x'></i>
-                </div>
-
-                <div class="title-confirm">
-                    <span id="responsavel-por-chave">Raphael Carvalho</span>
-                    <span>está devolvendo a chave:</span>
-                    <p id="chave-da-devolucao" class="text-title-confirm">Nome da chave</p>
-                </div>
-
-                <div class="btn-input">
-                    <button id="btn-cancel-devolucao" class="input-form" type="submit">Cancelar</button>
-                    <button id="btn-confirm-devolucao" class="input-form" type="submit">Confirmar</button>
-                </div>
-
-
-
-
-
-            </div>
         </div>
     </main>
-
 </body>
 
 </html>

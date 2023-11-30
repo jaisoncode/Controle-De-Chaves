@@ -64,20 +64,20 @@ function exibirChaves(data) {
     <table id="table-main" class="display" style="width:100%">
         <thead class="title-table">
             <tr>
-                <th>Nome</th>
-                <th>Setor</th>
-                <th>Localização</th>
-                <th>Ações</th>
+                <th class="solita-uso-table-header-nome">Nome</th>
+                <th class="solita-uso-table-header-setor">Setor</th>
+                <th class="solita-uso-table-header-localizacao">Localização</th>
+                <th class="solita-uso-table-header-acoes">Ações</th>
             </tr>
         </thead>
         <tbody>`;
     data.forEach(chaves => {
         novaChave += `
             <tr>
-                <td>${chaves.nome}</td>
-                <td>${chaves.setor.nome}</td>
-                <td>${chaves.localizacao.nomePredio}</td>
-                <td class="acao">
+                <td class="solita-uso-table-data-nome">${chaves.nome}</td>
+                <td class="solita-uso-table-data-setor">${chaves.setor.nome}</td>
+                <td class="solita-uso-table-data-localizacao">${chaves.localizacao.nomePredio}</td>
+                <td class="solita-uso-table-data-acoes">
                     <button id="btn-solicitar-uso-${chaves.id}" class="editar">Solicitar uso</button>
                 </td>
             </tr>`;
@@ -85,12 +85,13 @@ function exibirChaves(data) {
 
     novaChave += `</tbody>
 </table>`;
-
+    
     tabelaChave.innerHTML = novaChave;
-
+    
     //datables 
     $(document).ready(function () {
         const table = $('#table-main').DataTable({
+            responsive: true,
             info: true,
             ordering: false,
             paging: true,

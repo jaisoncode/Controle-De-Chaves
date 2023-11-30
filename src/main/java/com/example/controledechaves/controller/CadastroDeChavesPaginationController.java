@@ -27,8 +27,13 @@ public class CadastroDeChavesPaginationController {
         return "painelDeChaves/painel_de_chaves";
     }
 
-    @GetMapping("/controle_de_chaves")
+    @GetMapping("/emprestimosEmUso")
     public String controleDeChavesEmUso(){
-        return "controleDeChaves/controle_de_chaves";
+        return "painelDeChaves/painel_de_chaves_em_uso";
+    }
+
+    @GetMapping("/emprestimosDevolvidos")
+    public String controleDeChavesDevolvidos(){
+        return "painelDeChaves/painel_de_chaves_devolvido";
     }
 }

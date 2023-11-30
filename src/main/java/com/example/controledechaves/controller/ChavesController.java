@@ -20,6 +20,7 @@ import com.example.controledechaves.model.Chave;
 import com.example.controledechaves.model.Localizacao;
 import com.example.controledechaves.model.Setor;
 import com.example.controledechaves.repositories.ChaveRepository;
+import com.example.controledechaves.repositories.EmprestimoRepository;
 import com.example.controledechaves.repositories.LocalizacaoRepository;
 import com.example.controledechaves.repositories.SetorRepository;
 
@@ -35,6 +36,9 @@ public class ChavesController {
     private SetorRepository setorRepository;
     @Autowired
     private LocalizacaoRepository localizacaoRepository;
+    @Autowired 
+    private EmprestimoRepository emprestimoRepository;
+
 
     @PostMapping("setor/{idSetor}/localizacao/{idLocalizacao}")
     public Chave addChave(@RequestBody ChaveRequestDTO chaveRequestDTO, @PathVariable Long idSetor,
@@ -68,21 +72,26 @@ public class ChavesController {
         return salaResponseDTOs;
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<String> deleteSala(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteChave(@PathVariable Long id) {
         Chave chave = chaveRepository.getReferenceById(id);
 
-        // Remove a referência da Localizacao
-        // Localizacao localizacao = chave.getLocalizacao();
-        // Setor setor = chave.getSetor();
-        chave.setSetor(null);
-        chave.setLocalizacao(null);
-        chaveRepository.save(chave); // Atualiza a sala sem a referência de Localizacao
+        // Verifica se a chave está associada a um empréstimo
+        boolean chaveEmUso = emprestimoRepository.existsByChaveAndStatus(chave , "Em uso");
 
-        // Finalmente, exclui a Sala
-        chaveRepository.delete(chave);
+        if (chaveEmUso) {
+            return ResponseEntity.badRequest().body("Chave em uso, impossível apagar");
+        } else {
+            // Remove as referências da chave
+            chave.setSetor(null);
+            chave.setLocalizacao(null);
+            chaveRepository.save(chave); // Atualiza a chave sem as referências
 
-        return ResponseEntity.ok("Sala excluída com sucesso");
+            // Finalmente, exclui a chave
+            chaveRepository.delete(chave);
+
+            return ResponseEntity.ok("Chave excluída com sucesso");
+        }
     }
 
     @PutMapping("{id}")

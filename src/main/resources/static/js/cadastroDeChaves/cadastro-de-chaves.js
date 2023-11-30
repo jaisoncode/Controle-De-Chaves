@@ -192,20 +192,22 @@ function deletarChave(idChave) {
             'Content-Type': 'application/json'
         }
     })
-        .then(response => {
-            if (response.ok) {
-                console.log("Sala excluída com sucesso");
-                buscarChavesCadastradas();
-
-            } else {
-                console.error("Falha ao excluir a sala");
-                alert("Você não pode deletar essa localizacao, ela está associada a uma sala");
-                buscarChavesCadastradas();
-            }
-        })
-        .catch(error => {
-            console.error("Erro ao fazer a solicitação DELETE:", error);
-        });
+    .then(response => {
+        if (response.ok) {
+            return response.text(); // Retorna o texto da resposta
+        } else {
+            throw new Error('Falha ao excluir a chave, no momento ela está em uso'); // Lança um erro caso a exclusão falhe
+        }
+    })
+    .then(textoResposta => {
+        console.log(textoResposta); // Aqui está o texto da resposta "Chave excluída com sucesso"
+        buscarChavesCadastradas(); // Atualiza a lista de chaves após a exclusão
+    })
+    .catch(error => {
+        console.error("Erro ao fazer a solicitação DELETE:", error);
+        alert(error.message); // Exibe o erro caso a exclusão falhe
+        buscarChavesCadastradas(); // Atualiza a lista de chaves (se necessário)
+    });
 }
 
 function atualizarChave(idChave, NovaChaveEditada) {

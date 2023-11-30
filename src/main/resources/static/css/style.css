@@ -93,7 +93,7 @@ input {
 .container-seletores-de-cadastro {
     margin-top: 2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
 }
 
 .seletores-de-cadastro {
@@ -156,7 +156,6 @@ input {
     font-size: 8px;
 }
 
-
 .table-list {
     border-radius: .5rem;
     background: var(--white-color);
@@ -185,27 +184,6 @@ input {
     padding: 1.4rem 0 .8rem 0;
     display: flex;
 }
-
-#table-main th,
-#table-main td {
-    padding: 0rem 8rem;
-    height: 5rem;
-    border-bottom: var(--line-color) solid 1px;
-
-}
-
-#table-main tbody tr {
-    background-color: var(--white-color);
-}
-
-#table-main tbody tr:hover {
-    background-color: var(--background-gray);
-}
-
-.bottom {
-    padding: 10px;
-}
-
 
 #table-main_filter input[type="search"] {
     color: var(--font-primary);
@@ -252,5 +230,5 @@ input {
 
 .button-add-novo:hover {
     cursor: pointer;
-    opacity: 1;
+    opacity: .7;
 }
