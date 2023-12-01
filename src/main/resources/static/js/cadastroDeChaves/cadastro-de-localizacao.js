@@ -42,27 +42,27 @@ formLocalizacao.addEventListener("submit", function (event) {
 
 
 function exibirLocalizacao(data) {
-    let novaLocalizacao = `<table id="table-main" class="display" style="width:100%">
+    let novaLocalizacao = `
+    <table id="table-main" class="table-style">
     <thead class="title-table">
         <tr>
-            <th>Nome</th>
-            <th>Ações</th>
+            <th class="table-header-nome">Nome</th>
+            <th class="table-header-acoes">Ações</th>
         </tr>
     </thead>
     <tbody>`;
     data.forEach(localizacao => {
         novaLocalizacao += `
-            <tr>
-                <td>${localizacao.nome}</td>
-                <td class="acao">
-                    <button id="btn-edt-localizacao-${localizacao.id}" class="editar">Editar</button>
-                    <button id="btn-del-localizacao-${localizacao.id}" class="excluir">Excluir</button>
-                </td>
-            </tr>`;
+        <tr class="table-row">
+            <td class="table-data-nome">${localizacao.nome}</td>
+            <td class="table-data-acoes">
+                <i id="btn-edt-localizacao-${localizacao.id}" class='bx bx-edit icon-acao-table'></i>
+                <i id="btn-del-localizacao-${localizacao.id}" class='bx bx-trash icon-acao-table'></i>
+            </td>
+        </tr>`;
     });
 
-    novaLocalizacao += `</tbody>
-</table>`;
+    
 
     tabelaLocalizacao.innerHTML = novaLocalizacao;
 

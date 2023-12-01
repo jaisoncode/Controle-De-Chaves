@@ -43,38 +43,47 @@ console.log(horarioSaidaFormatado)
 
 function exibirEmprestimosEmUso(data) {
     let novoEmprestimo = `
-    <table id="table-main" class="display" style="width:100%">
+    <table id="table-main" class="table-style">
         <thead class="title-table">
             <tr>
-                <th>Responsável</th>
-                <th>Chave</th>
-                <th>Retirada</th>
-                <th>Status</th>
-                <th>Ações</th>
+                <th class="table-header-responsavel">Responsável</th>
+                <th class="table-header-chave">Chave</th>
+                <th class="table-header-retirada">Retirada</th>
+                <th class="table-header-status">Status</th>
+                <th class="table-header-acoes">Ações</th>
             </tr>
         </thead>
         <tbody>`;
     data.forEach(emprestimo => {
         novoEmprestimo += `
-            <tr>
-                <td>${emprestimo.nomeDoResponsavel}</td>
-                <td>${emprestimo.chave.nome}</td>
-                <td>${emprestimo.dataSaida}</td>
-                <td>${emprestimo.status}</td>
-                <td class="acao">
-                    <button id="btn-fazer-devolucao-${emprestimo.id}" class="editar">Devolução</button>
+            <tr class="table-row">
+                <td class="table-data-responsavel">${emprestimo.nomeDoResponsavel}</td>
+                <td class="table-data-chave">${emprestimo.chave.nome}</td>
+                <td class="table-data-retirada">
+                    <div class="date-moment">
+                        <span>${emprestimo.dataSaida}</span>
+                        <span>às</span>
+                        <span>${emprestimo.horarioSaida}</span>
+                    </div>
+                
+                </td>
+                <td class="table-data-status">
+                    <span class="status-em-uso">${emprestimo.status}</span>
+                </td>
+                <td class="table-data-acoes">
+                    <button id="btn-fazer-devolucao-${emprestimo.id}" class="btn-fazer-devolucao">Devolução</button>
                 </td>
             </tr>`;
     });
-
-    novoEmprestimo += `</tbody>
-</table>`;
 
     tabelaChave.innerHTML = novoEmprestimo;
 
     //datables 
     $(document).ready(function () {
         const table = $('#table-main').DataTable({
+            "columnDefs": [
+                { "className": "", "targets": "_all" } // Isso remove todas as classes das células
+            ],
             info: true,
             ordering: false,
             paging: true,

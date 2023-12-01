@@ -1,6 +1,5 @@
 buscarEmprestimosEmUso();
 buscarEmprestimosDevolvidos();
-buscarEmprestimosPendentes();
 buscarChavesCadastradasPorStatusDisponivel();
 
 const tabelaChave = document.querySelector('.table-list');
@@ -15,13 +14,6 @@ const btnCancelDevolucao = document.querySelector('#btn-cancel-devolucao')
 const btnConfirmDevoluco = document.querySelector('#btn-confirm-devolucao')
 const closeModal = document.querySelector('#fechar-modal');
 
-
-
-
-closeModal.addEventListener('click', function () {
-    modalConfirmDevolucao.style.display = 'none';
-
-});
 
 
 const agora = new Date();
@@ -44,37 +36,42 @@ console.log(horarioSaidaFormatado)
 
 function exibirEmprestimosDevolvidos(data) {
     let novoEmprestimo = `
-    <table id="table-main" class="display" style="width:100%">
+    <table id="table-main" class="table-style">
         <thead class="title-table">
             <tr>
-                <th>Responsável</th>
-                <th>Chave</th>
-                <th>Retirada</th>
-                <th>Devolução</th>
-                <th>Status</th>
+                <th class="table-header-responsavel">Responsável</th>
+                <th class="table-header-chave">Chave</th>
+                <th class="table-header-retirada">Retirada</th>
+                <th class="table-header-devolucao">Devolução</th>
+                <th class="table-header-status">Status</th>
                 
             </tr>
         </thead>
         <tbody>`;
     data.forEach(emprestimo => {
         novoEmprestimo += `
-            <tr>
-                <td>${emprestimo.nomeDoResponsavel}</td>
-                <td>${emprestimo.chave.nome}</td>
-                <td>${emprestimo.dataSaida}</td>
-                <td>${emprestimo.DataDevolucao}</td>
-                <td class="acao">
-                    <div class="status-devolvido">
-                    <span>${emprestimo.status}</span>
+            <tr class="table-row">
+                <td class="table-data-responsavel">${emprestimo.nomeDoResponsavel}</td>
+                <td class="table-data-chave">${emprestimo.chave.nome}</td>
+                <td class="table-data-retirada">
+                    <div class="date-moment">
+                        <span>${emprestimo.dataSaida}</span>
+                        <span>às</span>
+                        <span>${emprestimo.horarioSaida}</span>
                     </div>
-                    
+                </td>
+                <td class="table-data-devolucao">
+                        <div class="date-moment">
+                                <span>${emprestimo.dataDevolucao}</span>
+                                <span>às</span>
+                                <span>${emprestimo.horarioDevolucao}</span>
+                            </div>
+                <td class="table-data-status">
+                    <span class="status-devolvido">${emprestimo.status}</span>
                 </td>
                 
             </tr>`;
     });
-
-    novoEmprestimo += `</tbody>
-</table>`;
 
     tabelaChave.innerHTML = novoEmprestimo;
 
@@ -98,50 +95,6 @@ function exibirEmprestimosDevolvidos(data) {
         });
     });
 
-    data.forEach(emprestimo => {
-
-        const btnDevolucao = document.querySelector(`#btn-fazer-devolucao-${emprestimo.id}`)
-
-        const responsavelDaDevolucao = document.querySelector('#responsavel-por-chave')
-        const chaveDevolvida = document.querySelector('#chave-da-devolucao')
-
-        btnDevolucao.onclick = function () {
-            modalConfirmDevolucao.style.display = 'block';
-            responsavelDaDevolucao.innerHTML = emprestimo.nomeDoResponsavel;
-            chaveDevolvida.innerHTML = emprestimo.chave.nome;
-            idEmprestimo = emprestimo.id;
-
-            btnCancelDevolucao.onclick = function () {
-                modalConfirmDevolucao.style.display = "none";
-                idEmprestimo = null;
-            }
-
-            btnConfirmDevoluco.onclick = function () {
-                if (idEmprestimo != null){
-                    const objetoJson = {
-                        DataDevolucao: dataSaidaFormatada,
-                        horarioDevolucao: horarioSaidaFormatado,
-                        status: "Devolvido"
-                    }
-                    console.log(objetoJson);
-                    console.log(idEmprestimo);
-                    fazerDevolução(idEmprestimo, objetoJson);
-                    modalConfirmDevolucao.style.display = "none";
-                }
-                idEmprestimo = null;
-                console.log(idEmprestimo);
-                
-            }
-
-            closeModal.onclick = function () {
-                modoEdicao = null;
-                idEmprestimo = null;
-                console.log(idEmprestimo + "resetou");
-            }
-        }
-    })
-    const EmUso = document.querySelector('#count-em-uso')
-    EmUso.innerHTML = data.length;
 }
 
 // Função para buscar e exibir as localizações já cadastradas
@@ -150,8 +103,8 @@ function buscarEmprestimosEmUso() {
         .then(response => response.json())
         .then(data => {
             document.querySelector('#count-em-uso').innerHTML = data.length;
-            exibirEmprestimosEmUso(data);
             console.log(data);
+
         })
         .catch(error => {
             console.log('Erro ao buscar as chaves:', error);
@@ -162,23 +115,8 @@ function buscarEmprestimosDevolvidos() {
     fetch("http://localhost:8080/emprestimos/status/Devolvido")
         .then(response => response.json())
         .then(data => {
-            console.log(data.length);
-            document.querySelector("#count-devolvidos").innerHTML = data.length;
             exibirEmprestimosDevolvidos(data);
-            console.log(data);
-        })
-        .catch(error => {
-            console.log('Erro ao buscar as chaves:', error);
-        });
-}
-
-function buscarEmprestimosPendentes() {
-    fetch("http://localhost:8080/emprestimos/status/Pendente")
-        .then(response => response.json())
-        .then(data => {
-            console.log(data.length);
-            document.querySelector("#count-pendentes").innerHTML = data.length;
-            //exibirEmprestimos(data);
+            document.querySelector("#count-devolvidos").innerHTML = data.length;
             console.log(data);
         })
         .catch(error => {
@@ -191,13 +129,13 @@ function buscarChavesCadastradasPorStatusDisponivel() {
         .then(response => response.json())
         .then(data => {
             document.querySelector('#count-disponivel').innerHTML = data.length;
-            exibirChaves(data);
             console.log(data);
         })
         .catch(error => {
             console.log('Erro ao buscar as chaves:', error);
         });
 }
+
 
 
 

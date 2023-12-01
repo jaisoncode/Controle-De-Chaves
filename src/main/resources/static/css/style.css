@@ -166,12 +166,11 @@ input {
 /* Estilos para a tabela */
 
 .top-section {
-    height: 5.3rem;
+    height: 5.4rem;
     padding: 0rem 8rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: var(--line-color) 2px solid;
 }
 
 .info-text {
@@ -231,4 +230,183 @@ input {
 .button-add-novo:hover {
     cursor: pointer;
     opacity: .7;
+}
+
+.table-style{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-header-responsavel,
+.table-header-chave,
+.table-header-retirada,
+.table-header-devolucao,
+.table-header-nome,
+.table-header-setor,
+.table-header-localizacao,
+.table-header-status,
+.table-header-acoes{
+    color: var(--font-primary);
+    font-weight: 600;
+}
+
+.table-header-responsavel,
+.table-header-chave,
+.table-header-retirada,
+.table-header-devolucao,
+.table-header-nome,
+.table-header-setor,
+.table-header-localizacao,
+.table-header-status,
+.table-header-acoes,
+.table-data-responsavel,
+.table-data-chave,
+.table-data-retirada,
+.table-data-devolucao,
+.table-data-nome,
+.table-data-setor,
+.table-data-localizacao,
+.table-data-status,
+.table-data-acoes {
+    text-align: center;
+    word-wrap: break-word;
+    border-top: 1px solid var(--line-color);
+    border-bottom: 1px solid var(--line-color);
+    min-width: 100px;
+    padding: 1.5rem 1rem 1.5rem 1rem;
+    
+
+}
+
+.table-header-chave{
+ max-width: 26rem ;
+}
+
+.table-data-chave{
+    text-align: left;
+}
+
+
+
+.table-style td:last-child,
+.table-style th:last-child {
+    text-align: center;
+    padding-right: 6.5rem;
+}
+
+.table-style td:first-child,
+.table-style th:first-child {
+    text-align: left;
+    padding-left: 8rem;
+    min-width: 160px;
+    max-width: 260px;
+}
+
+.table-row:hover{
+    background-color: var(--line-color);
+}
+
+.icon-acao-table {
+    font-size: 2.4rem;
+    color: var(--font-second);
+    
+}
+
+.icon-acao-table:hover {
+    box-shadow: 0px 0px 5px 1px;
+}
+
+.status-livre,
+.status-devolvido,
+.status-em-uso{
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--white-color);
+    padding: .3rem .4rem;
+    border-radius: .5rem;
+}
+
+.status-em-uso{
+    background-color: var(--in-use-color);
+}
+
+.status-devolvido{
+    background-color: var(--backgroud-blue);
+}
+
+.status-livre{
+    background-color: var(--confirm-color);
+    
+}
+
+.btn-fazer-emprestimo,
+.btn-fazer-devolucao{
+    font-weight: 400;
+    height: 3.5rem;
+    width: 12.5rem;
+    color: var(--white-color);
+    background-color: var(--backgroud-blue);
+    padding: .8rem 1rem;
+    outline: none;
+    border: none;
+    border-radius: .5rem;
+}
+
+.date-moment{
+    display: flex;
+    flex-direction: column;
+}
+
+.date-moment span:nth-child(2) {
+    font-size: 1.4rem;
+    padding: .5rem 0;
+}
+
+.dataTables_empty{
+    padding: 2rem;
+    color: var(--font-primary);
+    border-bottom: 1px solid var(--line-color);
+}
+.bottom{ 
+    padding: 3rem 8rem;
+    background-color: var(--white-color);
+    display: flex;
+    justify-content: space-between;
+}
+
+.dataTables_info{
+    border: rebeccapurple 1px solid;
+    color: var(--font-primary);
+}
+
+.dataTables_paginate{
+
+    width: 400px;
+}
+.paginate_button{
+    border: #ff30cb solid 1px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    
+      
+}
+
+.bottom div:nth-child(2)  {
+    display: flex;
+    justify-content: space-between;
+    background-color: red;
+    color: var(--white-color);
+    align-items: center;
+    height: 3rem;
+}
+
+.bottom div:nth-child(2) span a  {
+   
+     
+}
+.bottom div:nth-child(2) span a:hover  {
+    cursor: pointer;
+    background-color: var(--font-second);
+    box-shadow: 0px 0px 17px 5px rgba(0,0,0,0.1);
 }

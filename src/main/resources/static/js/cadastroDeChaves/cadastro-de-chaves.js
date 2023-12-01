@@ -29,13 +29,15 @@ closeModal.addEventListener('click', function () {
 
 let modoEdicao = false;
 let idChave = null;
+let statusEdit = null;
 
 submitChave.addEventListener('click', function () {
     if (modoEdicao && idChave !== null) {
         const NovaChaveEditada = {
             nome: inputNomeDaChave.value,
             setor: selectSetor.value,
-            localizacao: selectLocalizacao.value
+            localizacao: selectLocalizacao.value,
+            status: statusEdit
             
             // Outros campos que você precise editar
         };
@@ -67,25 +69,25 @@ formChave.addEventListener("submit", function (event) {
 
 function exibirChaves(data) {
     let novaChave = `
-    <table id="table-main" class="display" style="width:100%">
+    <table id="table-main" class="table-style">
         <thead class="title-table">
             <tr>
-                <th>Nome</th>
-                <th>Setor</th>
-                <th>Localização</th>
-                <th>Ações</th>
+                <th class="table-header-nome">Nome</th>
+                <th class="table-header-setor">Setor</th>
+                <th class="table-header-localizacao">Localização</th>
+                <th class="table-header-setor">Ações</th>
             </tr>
         </thead>
         <tbody>`;
     data.forEach(chaves => {
         novaChave += `
-            <tr>
-                <td>${chaves.nome}</td>
-                <td>${chaves.setor.nome}</td>
-                <td>${chaves.localizacao.nomePredio}</td>
-                <td class="acao">
-                    <button id="btn-edt-chaves-${chaves.id}" class="editar">Editar</button>
-                    <button id="btn-del-chaves-${chaves.id}" class="excluir">Excluir</button>
+            <tr class="table-row">
+                <td class="table-data-nome">${chaves.nome}</td>
+                <td class="table-data-setor">${chaves.setor.nome}</td>
+                <td class="table-data-localizacao">${chaves.localizacao.nomePredio}</td>
+                <td class="table-data-acoes">
+                    <i id="btn-edt-chaves-${chaves.id}" class='bx bx-edit icon-acao-table'></i>
+                    <i id="btn-del-chaves-${chaves.id}" class='bx bx-trash icon-acao-table'></i>
                 </td>
             </tr>`;
     });
@@ -94,7 +96,7 @@ function exibirChaves(data) {
 </table>`;
 
     tabelaChave.innerHTML = novaChave;
-
+    
     //datables 
     $(document).ready(function () {
         const table = $('#table-main').DataTable({
@@ -135,6 +137,9 @@ function exibirChaves(data) {
             selectLocalizacao.value = chaves.localizacao.idLocalizacao;
             idChave = chaves.id;
 
+            console.log("status da sala atual: " + chaves.status)
+            statusEdit = chaves.status;
+            console.log("status da sala atual: " + statusEdit)
 
             closeModal.onclick = function () {
                 modoEdicao = null;

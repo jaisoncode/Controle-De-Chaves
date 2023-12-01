@@ -78,7 +78,6 @@
 #titulo-de-chave {
     display: flex;
     justify-content: center;
-
     font-size: 1.8rem;
     font-weight: 400;
     text-align: center;
@@ -111,30 +110,4 @@
     border-top: solid 1px var(--line-color);
     padding: 1.2rem 2rem .6rem 2rem;
 
-}
-
-.solita-uso-table-header-nome,
-.solita-uso-table-header-setor,
-.solita-uso-table-header-localizacao,
-.solita-uso-table-header-acoes,
-.solita-uso-table-data-nome,
-.solita-uso-table-data-setor,
-.solita-uso-table-data-localizacao,
-.solita-uso-table-data-acoes {
-    text-align: center;
-    height: 30px;
-    word-wrap: break-word;
-    padding-left: 10px;
-    padding-right: 10px;
-    border: #FF5630 1px solid;
-    min-width: 100px;
-    
-}
-
-.solita-uso-table-header-nome,
-.solita-uso-table-data-nome{
-    text-align: left;
-    min-width: 160px;
-    background-color: red;
-    max-width: 300px;
 }

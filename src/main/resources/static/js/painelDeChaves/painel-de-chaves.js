@@ -71,33 +71,33 @@ formChave.addEventListener("submit", function (event) {
 
 function exibirChaves(data) {
     let novaChave = `
-    <table id="table-main" class="display" style="width:100%">
+    <table id="table-main" class="table-style">
         <thead class="title-table">
             <tr>
-                <th class="solita-uso-table-header-nome">Nome</th>
-                <th class="solita-uso-table-header-setor">Setor</th>
-                <th class="solita-uso-table-header-localizacao">Localização</th>
-                <th class="solita-uso-table-header-localizacao">Status</th>
-                <th class="solita-uso-table-header-acoes">Ações</th>
+            <th class="table-header-nome">Nome</th>
+            <th class="table-header-setor">Setor</th>
+            <th class="table-header-localizacao">Localização</th>
+            <th class="table-header-status">Status</th>
+            <th class="table-header-setor">Ações</th>
             </tr>
         </thead>
         <tbody>`;
     data.forEach(chaves => {
         novaChave += `
             <tr>
-                <td class="solita-uso-table-data-nome">${chaves.nome}</td>
-                <td class="solita-uso-table-data-setor">${chaves.setor.nome}</td>
-                <td class="solita-uso-table-data-localizacao">${chaves.localizacao.nomePredio}</td>
-                <td class="solita-uso-table-data-status">${chaves.status}</td>
-                <td class="solita-uso-table-data-acoes">
-                    <button id="btn-solicitar-uso-${chaves.id}" class="editar">Solicitar uso</button>
+                <td class="table-data-nome">${chaves.nome}</td>
+                <td class="table-data-setor">${chaves.setor.nome}</td>
+                <td class="table-data-localizacao">${chaves.localizacao.nomePredio}</td>
+                <td class="table-data-status">
+                    <span class="status-livre">${chaves.status}</span>
+                </td>
+                <td class="table-data-acoes">
+                    <button id="btn-solicitar-uso-${chaves.id}" class="btn-fazer-emprestimo">Solicitar uso</button>
                 </td>
             </tr>`;
     });
 
-    novaChave += `</tbody>
-</table>`;
-
+ 
     tabelaChave.innerHTML = novaChave;
 
     //datables 

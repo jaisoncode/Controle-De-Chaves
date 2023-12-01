@@ -42,27 +42,27 @@ formSetor.addEventListener("submit", function (event) {
 
 
 function exibirSetor(data) {
-    let novoSetor = `<table id="table-main" class="display" style="width:100%">
+    let novoSetor = `
+    <table id="table-main" class="table-style ">
     <thead class="title-table">
         <tr>
-            <th>Nome</th>
-            <th>Ações</th>
+            <th class="table-header-nome">Nome</th>
+            <th class="table-header-acoes ">Ações</th>
         </tr>
     </thead>
     <tbody>`;
     data.forEach(setor => {
         novoSetor += `
-            <tr>
-                <td>${setor.nome}</td>
-                <td class="acao">
-                    <button id="btn-edt-setor-${setor.id}" class="editar">Editar</button>
-                    <button id="btn-del-setor-${setor.id}" class="excluir">Excluir</button>
-                </td>
-            </tr>`;
+        <tr class="table-row">
+            <td class="table-data-nome">${setor.nome}</td>
+            <td class="table-data-acoes cad-acoes">
+                <i id="btn-edt-setor-${setor.id}" class='bx bx-edit icon-acao-table'></i>
+                <i id="btn-del-setor-${setor.id}" class='bx bx-trash icon-acao-table'></i>
+            </td>
+    </tr>`;
     });
 
-    novoSetor += `</tbody>
-</table>`;
+    
 
     tabelaSetor.innerHTML = novoSetor;
 
@@ -94,7 +94,7 @@ function exibirSetor(data) {
     });
 
     data.forEach(setor => {
-
+        
         const iconEditar = document.querySelector(`#btn-edt-setor-${setor.id}`)
         const iconDeletar = document.querySelector(`#btn-del-setor-${setor.id}`)
 
