@@ -1,6 +1,6 @@
 :root {
     --backgroud-blue: #5E72E4;
-    --background-gray: #F2F3F8;
+    --background-gray: linear-gradient(180deg, rgba(242, 243, 248, 1) 70%, rgba(255, 255, 255, 1) 100%);
     --white-color: #FFFFFF;
     --in-use-color: #FFAB00;
     --update-color: #E7D000;
@@ -22,7 +22,7 @@
 }
 
 body {
-    background: var(--background-gray);
+    background: linear-gradient(180deg, rgba(242, 243, 248, 1) 70%, rgba(255, 255, 255, 1) 100%);
 }
 
 html {
@@ -49,13 +49,13 @@ input {
 .bg-header-content {
     height: 34rem;
     background: var(--backgroud-blue);
-    position: relative;
 
 }
 
 .page-content {
     max-width: 110rem;
     margin: 0 auto;
+    
 }
 
 .top-nav-content {
@@ -86,8 +86,8 @@ input {
 }
 
 .main-conteudo {
-    position: relative;
-    top: -27rem;
+    margin-top: -27rem;
+    min-height: 75vh;
 }
 
 .container-seletores-de-cadastro {
@@ -345,6 +345,7 @@ input {
 
 .btn-fazer-emprestimo,
 .btn-fazer-devolucao {
+    margin: 0 auto;
     font-weight: 400;
     height: 3.5rem;
     width: 12.5rem;
@@ -354,6 +355,9 @@ input {
     outline: none;
     border: none;
     border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-fazer-emprestimo:hover,
@@ -408,7 +412,7 @@ input {
 }
 
 .bx-chevron-left,
-.bx-chevron-right   {
+.bx-chevron-right {
     font-size: 2rem;
 }
 
@@ -429,8 +433,48 @@ input {
     box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.75);
 }
 
-.dataTables_empty{
+.dataTables_empty {
     padding: 2rem;
     color: var(--font-primary);
     border-bottom: 1px solid var(--line-color);
+}
+
+.footer-container {
+    margin-top: 5rem;
+    border-top: var(--line-color) solid 1px;
+}
+
+.footer-conteudo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 0;
+}
+
+.footer-conteudo ul a {
+    color: var(--font-primary);
+    padding: 0 1rem;
+}
+
+.footer-conteudo ul a:hover {
+    text-decoration: underline;
+}
+
+.footer-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-wrap: nowrap;
+}
+
+.footer-conteudo a {
+    color: black;
+}
+
+.footer-conteudo a:hover {
+    color: #5E72E4;
+}
+
+.bxs-heart{
+    color: red;
 }

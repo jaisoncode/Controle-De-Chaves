@@ -13,20 +13,16 @@
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/cadastroDeChaves/cadastro-de-chaves.css}">
- 
+
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
-    <script src="/js/cadastroDeChaves/cadastro-de-chaves.js" th:src="@{/js/cadastroDeChaves/cadastro-de-chaves.js}" defer></script>
+    
+    <script src="/js/cadastroDeChaves/cadastro-de-chaves.js" th:src="@{/js/cadastroDeChaves/cadastro-de-chaves.js}"
+        defer></script>
 
     <title>Document</title>
 </head>
@@ -38,7 +34,7 @@
                 <ul>
                     <a href="/page/cadastro-de-chaves" class="item-top-nav-active"> Cadastro de chaves</a>
                     <a href="/page/painel_de_chaves" class="item-top-nav"> Painel de chaves</a>
-                    
+
                 </ul>
             </div>
             <div class="perfil-top-nav">
@@ -87,42 +83,46 @@
                             <label for="input-chave-nome">Nome da chave</label>
                             <input id="input-chave-nome" class="input-form" type="text" placeholder="Sala 04">
                         </div>
-
-
                         <div>
                             <label for="select-setor">Setor</label>
                             <select id="select-setor" name="setor" class="input-form">
                                 <option disabled selected hidden>Selecione um setor</option>
-                                
+
                             </select>
                         </div>
-                        
                         <div>
                             <label for="select-localizacao">Localização</label>
                             <select id="select-localizacao" class="input-form">
                                 <option disabled selected hidden>Selecione uma Localização</option>
-                                
+
                             </select>
                         </div>
-                        
-
-    
-                       
                     </div>
-
-                    
                     <div class="btn-input">
                         <button id="button-adicionar-chave" class="input-form btn-form-add" type="submit">Adicionar
                             chave</button>
                     </div>
-
                 </form>
 
 
 
             </div>
         </div>
+        
     </main>
+
+    <footer class="footer-container">
+        <div class="page-content footer-conteudo">
+        
+            <span>&copy; 2023 Desenvolvido de <i class='bx bxs-heart bx-tada' ></i> por <a href="#">Jaison</a> & <a href="#">Maria Juliana</a>.</span>
+            <ul class="footer-nav">
+                <a href="/page/cadastro-de-chaves"> Cadastro de chaves</a>
+                <a href="/page/painel_de_chaves"> Painel de chaves</a>
+                <a href="/page/sobre">Sobre</a>
+            </ul>
+        </div>
+    </footer>
+
 
 </body>
 
