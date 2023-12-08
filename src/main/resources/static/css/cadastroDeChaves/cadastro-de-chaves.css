@@ -95,11 +95,10 @@
 }
 
 .btn-form-add:hover {
-    background: #4388F7;
+    opacity: .8;
 }
 
 .btn-input {
     border-top: solid 1px var(--line-color);
     padding: 1.2rem 2rem .6rem 2rem;
-
 }

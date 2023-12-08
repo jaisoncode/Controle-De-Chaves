@@ -229,10 +229,10 @@ input {
 
 .button-add-novo:hover {
     cursor: pointer;
-    opacity: .7;
+    opacity: .8;
 }
 
-.table-style{
+.table-style {
     border-collapse: collapse;
     width: 100%;
 }
@@ -245,7 +245,7 @@ input {
 .table-header-setor,
 .table-header-localizacao,
 .table-header-status,
-.table-header-acoes{
+.table-header-acoes {
     color: var(--font-primary);
     font-weight: 600;
 }
@@ -274,16 +274,16 @@ input {
     border-bottom: 1px solid var(--line-color);
     min-width: 100px;
     padding: 1.5rem 1rem 1.5rem 1rem;
-    
+
 
 }
 
-.table-header-chave{
- max-width: 26rem ;
+.table-header-chave {
+    max-width: 26rem;
 }
 
-.table-data-chave{
-    text-align: left;
+.table-data-chave {
+    text-align: center;
 }
 
 
@@ -302,23 +302,27 @@ input {
     max-width: 260px;
 }
 
-.table-row:hover{
+.table-row:hover {
     background-color: var(--line-color);
 }
 
 .icon-acao-table {
     font-size: 2.4rem;
     color: var(--font-second);
-    
+    padding: 5px;
+    border: none;
+    border-radius: 50%;
 }
 
 .icon-acao-table:hover {
-    box-shadow: 0px 0px 5px 1px;
+    background-color: var(--backgroud-blue);
+    color: white;
+    cursor: pointer;
 }
 
 .status-livre,
 .status-devolvido,
-.status-em-uso{
+.status-em-uso {
     font-size: 1.2rem;
     font-weight: 400;
     color: var(--white-color);
@@ -326,21 +330,21 @@ input {
     border-radius: .5rem;
 }
 
-.status-em-uso{
+.status-em-uso {
     background-color: var(--in-use-color);
 }
 
-.status-devolvido{
+.status-devolvido {
     background-color: var(--backgroud-blue);
 }
 
-.status-livre{
+.status-livre {
     background-color: var(--confirm-color);
-    
+
 }
 
 .btn-fazer-emprestimo,
-.btn-fazer-devolucao{
+.btn-fazer-devolucao {
     font-weight: 400;
     height: 3.5rem;
     width: 12.5rem;
@@ -352,7 +356,13 @@ input {
     border-radius: .5rem;
 }
 
-.date-moment{
+.btn-fazer-emprestimo:hover,
+.btn-fazer-devolucao:hover {
+    cursor: pointer;
+    opacity: .8;
+}
+
+.date-moment {
     display: flex;
     flex-direction: column;
 }
@@ -362,51 +372,59 @@ input {
     padding: .5rem 0;
 }
 
-.dataTables_empty{
-    padding: 2rem;
-    color: var(--font-primary);
-    border-bottom: 1px solid var(--line-color);
-}
-.bottom{ 
+.bottom {
     padding: 3rem 8rem;
     background-color: var(--white-color);
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    border-radius: 0 0 .5rem .5rem;
 }
 
-.dataTables_info{
-    border: rebeccapurple 1px solid;
+#table-main_paginate {
+    align-items: center;
+    display: flex;
+}
+
+#table-main_paginate a.previous,
+#table-main_paginate a.next,
+#table-main_paginate span a {
+    width: 35px;
+    height: 35px;
+    border: 2px solid var(--line-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 .3rem;
     color: var(--font-primary);
 }
 
-.dataTables_paginate{
-
-    width: 400px;
-}
-.paginate_button{
-    border: #ff30cb solid 1px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    
-      
-}
-
-.bottom div:nth-child(2)  {
-    display: flex;
-    justify-content: space-between;
-    background-color: red;
-    color: var(--white-color);
-    align-items: center;
-    height: 3rem;
-}
-
-.bottom div:nth-child(2) span a  {
-   
-     
-}
-.bottom div:nth-child(2) span a:hover  {
+#table-main_paginate a.previous:hover,
+#table-main_paginate a.next:hover,
+#table-main_paginate span a:hover {
+    background-color: var(--line-color);
     cursor: pointer;
-    background-color: var(--font-second);
-    box-shadow: 0px 0px 17px 5px rgba(0,0,0,0.1);
+}
+
+.bx-chevron-left,
+.bx-chevron-right   {
+    font-size: 2rem;
+}
+
+/* Estilizando os botões "Anterior" e "Próximo" no estado desabilitado */
+#table-main_paginate a.previous.disabled,
+#table-main_paginate a.next.disabled {
+    pointer-events: none;
+}
+
+#table-main_paginate span {
+    display: flex;
+}
+
+#table-main_paginate .paginate_button.current {
+    border: var(--backgroud-blue);
+    background-color: var(--backgroud-blue);
+    color: white;
+    box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.75);
 }

@@ -96,6 +96,8 @@ function exibirEmprestimosEmUso(data) {
         });
 
         table.on('draw.dt', function () {
+            $('#table-main_previous').html('<i class="bx bx-chevron-left"></i>');
+            $('#table-main_next').html('<i class="bx bx-chevron-right"></i>');
             $('.info-text').text('Retirada de chave');
             $('.custom-button').html('').appendTo('.top-section-direita');
         });

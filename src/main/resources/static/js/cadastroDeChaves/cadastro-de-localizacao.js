@@ -81,6 +81,8 @@ function exibirLocalizacao(data) {
         });
 
         table.on('draw.dt', function () {
+            $('#table-main_previous').html('<i class="bx bx-chevron-left"></i>');
+            $('#table-main_next').html('<i class="bx bx-chevron-right"></i>');
             $('.info-text').text('Localizações cadastradas');
             $('.custom-button').html('<div id="btn-nova-chave" class="button-add-novo"><span><i class="bx bx-plus"></i>Adicione</span></div>').appendTo('.top-section-direita');
 

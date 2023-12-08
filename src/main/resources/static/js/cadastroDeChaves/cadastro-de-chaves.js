@@ -21,7 +21,7 @@ closeModal.addEventListener('click', function () {
     modalCadChave.style.display = 'none';
     //inputNomeDaChave.value = "";
     //selectSetor.value = "";
-   // selectLocalizacao.value = "";
+    // selectLocalizacao.value = "";
 
 });
 
@@ -38,7 +38,7 @@ submitChave.addEventListener('click', function () {
             setor: selectSetor.value,
             localizacao: selectLocalizacao.value,
             status: statusEdit
-            
+
             // Outros campos que você precise editar
         };
         atualizarChave(idChave, NovaChaveEditada);
@@ -58,8 +58,8 @@ submitChave.addEventListener('click', function () {
     }
     modalCadChave.style.display = 'none';
     //inputNomeDaChave.value = "";
-   // selectSetor.value = "";
-   // selectLocalizacao.value = "";
+    // selectSetor.value = "";
+    // selectLocalizacao.value = "";
 })
 
 formChave.addEventListener("submit", function (event) {
@@ -96,7 +96,7 @@ function exibirChaves(data) {
 </table>`;
 
     tabelaChave.innerHTML = novaChave;
-    
+
     //datables 
     $(document).ready(function () {
         const table = $('#table-main').DataTable({
@@ -111,7 +111,9 @@ function exibirChaves(data) {
             }
         });
 
-        table.on('draw.dt', function () {
+        table.on('draw.dt', function () {   
+            $('#table-main_previous').html('<i class="bx bx-chevron-left"></i>');
+            $('#table-main_next').html('<i class="bx bx-chevron-right"></i>');
             $('.info-text').text('Chaves cadastradas');
             $('.custom-button').html('<div id="btn-nova-chave" class="button-add-novo"><span><i class="bx bx-plus"></i>Adicione</span></div>').appendTo('.top-section-direita');
 
@@ -124,8 +126,12 @@ function exibirChaves(data) {
         });
     });
 
+    
+
+
+
     data.forEach(chaves => {
-        
+
         const iconEditar = document.querySelector(`#btn-edt-chaves-${chaves.id}`)
         const iconDeletar = document.querySelector(`#btn-del-chaves-${chaves.id}`)
 
@@ -199,22 +205,22 @@ function deletarChave(idChave) {
             'Content-Type': 'application/json'
         }
     })
-    .then(response => {
-        if (response.ok) {
-            return response.text(); // Retorna o texto da resposta
-        } else {
-            throw new Error('Falha ao excluir a chave, no momento ela está em uso'); // Lança um erro caso a exclusão falhe
-        }
-    })
-    .then(textoResposta => {
-        console.log(textoResposta); // Aqui está o texto da resposta "Chave excluída com sucesso"
-        buscarChavesCadastradas(); // Atualiza a lista de chaves após a exclusão
-    })
-    .catch(error => {
-        console.error("Erro ao fazer a solicitação DELETE:", error);
-        alert(error.message); // Exibe o erro caso a exclusão falhe
-        buscarChavesCadastradas(); // Atualiza a lista de chaves (se necessário)
-    });
+        .then(response => {
+            if (response.ok) {
+                return response.text(); // Retorna o texto da resposta
+            } else {
+                throw new Error('Falha ao excluir a chave, no momento ela está em uso'); // Lança um erro caso a exclusão falhe
+            }
+        })
+        .then(textoResposta => {
+            console.log(textoResposta); // Aqui está o texto da resposta "Chave excluída com sucesso"
+            buscarChavesCadastradas(); // Atualiza a lista de chaves após a exclusão
+        })
+        .catch(error => {
+            console.error("Erro ao fazer a solicitação DELETE:", error);
+            alert(error.message); // Exibe o erro caso a exclusão falhe
+            buscarChavesCadastradas(); // Atualiza a lista de chaves (se necessário)
+        });
 }
 
 function atualizarChave(idChave, NovaChaveEditada) {
@@ -276,7 +282,7 @@ function exibirSetor(data) {
     });
 
     selectSetor.innerHTML = novaSetorNoSelect;
-    
+
 }
 
 function exibirLocalizacao(data) {
