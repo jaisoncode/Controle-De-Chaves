@@ -428,3 +428,9 @@ input {
     color: white;
     box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.75);
 }
+
+.dataTables_empty{
+    padding: 2rem;
+    color: var(--font-primary);
+    border-bottom: 1px solid var(--line-color);
+}
