@@ -36,4 +36,9 @@ public class CadastroDeChavesPaginationController {
     public String controleDeChavesDevolvidos(){
         return "painelDeChaves/painel_de_chaves_devolvido";
     }
+
+    @GetMapping("/historicoDeEmprestimos")
+    public String historicoDeEmprestimos(){
+        return "historicoDeEmprestimos/historico-de-emprestimos";
+    }
 }
