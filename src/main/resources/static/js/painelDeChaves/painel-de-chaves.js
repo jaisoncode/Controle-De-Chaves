@@ -1,5 +1,6 @@
 buscarChavesCadastradasPorStatusDisponivel();
-buscarEmprestimosDevolvidos();
+//buscarEmprestimosDevolvidos();
+buscarEmprestimosDevolvidosHoje();
 buscarEmprestimosEmUso();
 
 const tabelaChave = document.querySelector('.table-list');
@@ -149,7 +150,7 @@ function exibirChaves(data) {
 
 }
 
-// /status/{status}    Função para buscar e exibir as localizações já cadastradas
+
 function buscarChavesCadastradas() {
     fetch("http://localhost:8080/cadastro-de-chaves/")
         .then(response => response.json())
@@ -215,6 +216,18 @@ function fazerEmprestimoDeChaveAlteraStatusDaChave(idChave, chaveObjetoJson) {
         });
 }
 
+function buscarEmprestimosDevolvidosHoje() {
+    fetch("http://localhost:8080/emprestimos/do-dia-em-uso/Devolvido")
+        .then(response => response.json())
+        .then(data => {
+            exibirEmprestimosDevolvidos(data);
+            document.querySelector("#count-devolvidos").innerHTML = data.length;
+            console.log(data);
+        })
+        .catch(error => {
+            console.log('Erro ao buscar as chaves:', error);
+        });
+}
 
 function buscarEmprestimosDevolvidos() {
     fetch("http://localhost:8080/emprestimos/status/Devolvido")

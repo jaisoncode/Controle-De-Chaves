@@ -91,7 +91,6 @@ public class EmprestimoController {
     @GetMapping("/do-dia")
     public List<Emprestimo> getEmprestimosDoDia() {
         LocalDate dataAtual = LocalDate.now(); // Obtém a data atual
-
         return emprestimoRepository.findByDataSaida(dataAtual);
     }
 

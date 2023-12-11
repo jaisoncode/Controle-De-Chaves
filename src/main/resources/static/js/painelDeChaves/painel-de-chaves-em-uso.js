@@ -1,5 +1,6 @@
 buscarEmprestimosEmUso();
-buscarEmprestimosDevolvidos();
+//buscarEmprestimosDevolvidos();
+buscarEmprestimosDevolvidosHoje()
 buscarChavesCadastradasPorStatusDisponivel()
 
 const tabelaChave = document.querySelector('.table-list');
@@ -211,7 +212,18 @@ function buscarEmprestimosDevolvidos() {
         });
 }
 
-
+function buscarEmprestimosDevolvidosHoje() {
+    fetch("http://localhost:8080/emprestimos/do-dia-em-uso/Devolvido")
+        .then(response => response.json())
+        .then(data => {
+            exibirEmprestimosDevolvidos(data);
+            document.querySelector("#count-devolvidos").innerHTML = data.length;
+            console.log(data);
+        })
+        .catch(error => {
+            console.log('Erro ao buscar as chaves:', error);
+        });
+}
 
 function buscarChavesCadastradasPorStatusDisponivel() {
     fetch("http://localhost:8080/cadastro-de-chaves/status/Disponivel")

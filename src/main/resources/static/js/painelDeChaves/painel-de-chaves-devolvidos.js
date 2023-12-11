@@ -1,6 +1,7 @@
 buscarEmprestimosEmUso();
-buscarEmprestimosDevolvidos();
+//buscarEmprestimosDevolvidos();
 buscarChavesCadastradasPorStatusDisponivel();
+buscarEmprestimosDevolvidosHoje();
 
 const tabelaChave = document.querySelector('.table-list');
 const modalConfirmDevolucao = document.querySelector('.confirm-devolucao-modal-content-group');
@@ -107,6 +108,19 @@ function buscarEmprestimosEmUso() {
             document.querySelector('#count-em-uso').innerHTML = data.length;
             console.log(data);
 
+        })
+        .catch(error => {
+            console.log('Erro ao buscar as chaves:', error);
+        });
+}
+
+function buscarEmprestimosDevolvidosHoje() {
+    fetch("http://localhost:8080/emprestimos/do-dia-em-uso/Devolvido")
+        .then(response => response.json())
+        .then(data => {
+            exibirEmprestimosDevolvidos(data);
+            document.querySelector("#count-devolvidos").innerHTML = data.length;
+            console.log(data);
         })
         .catch(error => {
             console.log('Erro ao buscar as chaves:', error);

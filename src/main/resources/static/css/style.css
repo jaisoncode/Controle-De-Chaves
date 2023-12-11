@@ -23,6 +23,8 @@
 
 body {
     background: linear-gradient(180deg, rgba(242, 243, 248, 1) 70%, rgba(255, 255, 255, 1) 100%);
+    position: relative;
+    min-height: 100vh;
 }
 
 html {
@@ -55,7 +57,7 @@ input {
 .page-content {
     max-width: 110rem;
     margin: 0 auto;
-    
+
 }
 
 .top-nav-content {
@@ -87,7 +89,7 @@ input {
 
 .main-conteudo {
     margin-top: -27rem;
-    min-height: 75vh;
+    min-height: 78vh;
 }
 
 .container-seletores-de-cadastro {
@@ -440,41 +442,49 @@ input {
 }
 
 .footer-container {
-    margin-top: 5rem;
-    border-top: var(--line-color) solid 1px;
+    margin-top: 2.5rem;
 }
 
-.footer-conteudo {
+
+.footer-conteudo span {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 4rem 0;
+    justify-content: center;
+    padding-bottom: 2rem;
+    color: var(--font-primary);
 }
 
-.footer-conteudo ul a {
+.footer-conteudo span a {
+    color: var(--font-primary);
+    padding: 0 .3rem;
+    font-weight: 500;
+}
+
+.footer-conteudo span a:hover {
+    text-decoration: underline;
+    color: #5E72E4;
+}
+
+.footer-nav {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-wrap: nowrap;
+    padding-bottom: 2rem;
+    border-bottom: var(--line-color) 1px solid;
+    margin-bottom: 2rem;
+}
+
+.footer-nav a {
     color: var(--font-primary);
     padding: 0 1rem;
 }
 
-.footer-conteudo ul a:hover {
-    text-decoration: underline;
-}
-
-.footer-nav{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    text-wrap: nowrap;
-}
-
-.footer-conteudo a {
-    color: black;
-}
-
-.footer-conteudo a:hover {
+.footer-nav a:hover {
+    font-weight: 500;
     color: #5E72E4;
 }
 
-.bxs-heart{
+.bxs-heart {
     color: red;
+    padding: 0 .3rem;
 }
