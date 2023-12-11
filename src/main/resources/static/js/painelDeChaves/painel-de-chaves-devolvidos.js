@@ -1,5 +1,4 @@
 buscarEmprestimosEmUso();
-//buscarEmprestimosDevolvidos();
 buscarChavesCadastradasPorStatusDisponivel();
 buscarEmprestimosDevolvidosHoje();
 
@@ -120,20 +119,7 @@ function buscarEmprestimosDevolvidosHoje() {
         .then(data => {
             exibirEmprestimosDevolvidos(data);
             document.querySelector("#count-devolvidos").innerHTML = data.length;
-            console.log(data);
-        })
-        .catch(error => {
-            console.log('Erro ao buscar as chaves:', error);
-        });
-}
 
-function buscarEmprestimosDevolvidos() {
-    fetch("http://localhost:8080/emprestimos/status/Devolvido")
-        .then(response => response.json())
-        .then(data => {
-            exibirEmprestimosDevolvidos(data);
-            document.querySelector("#count-devolvidos").innerHTML = data.length;
-            console.log(data);
         })
         .catch(error => {
             console.log('Erro ao buscar as chaves:', error);

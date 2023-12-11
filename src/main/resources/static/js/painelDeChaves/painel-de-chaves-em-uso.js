@@ -1,5 +1,4 @@
 buscarEmprestimosEmUso();
-//buscarEmprestimosDevolvidos();
 buscarEmprestimosDevolvidosHoje()
 buscarChavesCadastradasPorStatusDisponivel()
 
@@ -183,13 +182,13 @@ function fazerDevolução(idEmprestimo, objetoJson) {
             if (response.ok) {
                 console.log("localizacao atualizada com sucesso");
                 buscarEmprestimosEmUso();
-                buscarEmprestimosDevolvidos();
+                buscarEmprestimosDevolvidosHoje();
                 buscarChavesCadastradasPorStatusDisponivel();
 
             } else {
                 console.error("Falha ao atualizar a localizacao");
                 buscarEmprestimosEmUso();
-                buscarEmprestimosDevolvidos();
+                buscarEmprestimosDevolvidosHoje();
                 buscarChavesCadastradasPorStatusDisponivel();
             }
         })
@@ -198,27 +197,12 @@ function fazerDevolução(idEmprestimo, objetoJson) {
         });
 }
 
-function buscarEmprestimosDevolvidos() {
-    fetch("http://localhost:8080/emprestimos/status/Devolvido")
-        .then(response => response.json())
-        .then(data => {
-            console.log(data.length);
-            document.querySelector("#count-devolvidos").innerHTML = data.length;
-            //exibirEmprestimos(data);
-            console.log(data);
-        })
-        .catch(error => {
-            console.log('Erro ao buscar as chaves:', error);
-        });
-}
-
 function buscarEmprestimosDevolvidosHoje() {
     fetch("http://localhost:8080/emprestimos/do-dia-em-uso/Devolvido")
         .then(response => response.json())
         .then(data => {
-            exibirEmprestimosDevolvidos(data);
             document.querySelector("#count-devolvidos").innerHTML = data.length;
-            console.log(data);
+            
         })
         .catch(error => {
             console.log('Erro ao buscar as chaves:', error);

@@ -1,5 +1,4 @@
 buscarChavesCadastradasPorStatusDisponivel();
-//buscarEmprestimosDevolvidos();
 buscarEmprestimosDevolvidosHoje();
 buscarEmprestimosEmUso();
 
@@ -189,7 +188,7 @@ function fazerEmprestimoDeChave(idChave, emprestimoObjetoJson) {
         .then(response => {
             console.log(response);
             buscarChavesCadastradasPorStatusDisponivel();
-            buscarEmprestimosDevolvidos();
+            buscarEmprestimosDevolvidosHoje();
             buscarEmprestimosEmUso();
         })
         .catch(function (response) { console.log(response) });
@@ -220,23 +219,7 @@ function buscarEmprestimosDevolvidosHoje() {
     fetch("http://localhost:8080/emprestimos/do-dia-em-uso/Devolvido")
         .then(response => response.json())
         .then(data => {
-            exibirEmprestimosDevolvidos(data);
             document.querySelector("#count-devolvidos").innerHTML = data.length;
-            console.log(data);
-        })
-        .catch(error => {
-            console.log('Erro ao buscar as chaves:', error);
-        });
-}
-
-function buscarEmprestimosDevolvidos() {
-    fetch("http://localhost:8080/emprestimos/status/Devolvido")
-        .then(response => response.json())
-        .then(data => {
-            console.log(data.length);
-            document.querySelector("#count-devolvidos").innerHTML = data.length;
-            
-            console.log(data);
         })
         .catch(error => {
             console.log('Erro ao buscar as chaves:', error);
@@ -254,10 +237,3 @@ function buscarEmprestimosEmUso() {
             console.log('Erro ao buscar as chaves:', error);
         });
 }
-
-
-
-
-
-
-
