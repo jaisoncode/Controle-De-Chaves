@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/page")
-public class CadastroDeChavesPaginationController {
+public class PaginationController {
 
     @GetMapping("/cadastro-de-chaves")
     public String cadastroDeChavesrPage() {
@@ -23,22 +23,28 @@ public class CadastroDeChavesPaginationController {
     }
 
     @GetMapping("/painel_de_chaves")
-    public String painelDeChaves(){
+    public String painelDeChaves() {
         return "painelDeChaves/painel_de_chaves";
     }
 
     @GetMapping("/emprestimosEmUso")
-    public String controleDeChavesEmUso(){
+    public String controleDeChavesEmUso() {
         return "painelDeChaves/painel_de_chaves_em_uso";
     }
 
     @GetMapping("/emprestimosDevolvidos")
-    public String controleDeChavesDevolvidos(){
+    public String controleDeChavesDevolvidos() {
         return "painelDeChaves/painel_de_chaves_devolvido";
     }
 
     @GetMapping("/historicoDeEmprestimos")
-    public String historicoDeEmprestimos(){
+    public String historicoDeEmprestimos() {
         return "historicoDeEmprestimos/historico-de-emprestimos";
     }
+
+    @GetMapping("/sobre")
+    public String sobre() {
+        return "sobre/sobre";
+    }
+    
 }

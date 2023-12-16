@@ -130,7 +130,7 @@ function exibirLocalizacao(data) {
 
 // Função para buscar e exibir as localizações já cadastradas
 function buscarLocalizacoesCadastradas() {
-    fetch("http://localhost:8080/cadastro-de-localizacao/")
+    fetch("http://localhost:8080/cadastro-de-localizacao")
         .then(response => response.json())
         .then(data => {
 

@@ -151,7 +151,7 @@ function exibirChaves(data) {
 
 
 function buscarChavesCadastradas() {
-    fetch("http://localhost:8080/cadastro-de-chaves/")
+    fetch("http://localhost:8080/cadastro-de-chaves")
         .then(response => response.json())
         .then(data => {
 

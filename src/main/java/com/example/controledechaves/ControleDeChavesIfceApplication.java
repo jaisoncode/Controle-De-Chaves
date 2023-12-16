@@ -8,5 +8,4 @@ public class ControleDeChavesIfceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ControleDeChavesIfceApplication.class, args);
 	}
-
 }

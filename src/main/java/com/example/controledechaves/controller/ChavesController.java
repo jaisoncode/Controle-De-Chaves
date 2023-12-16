@@ -61,7 +61,7 @@ public class ChavesController {
         return chaveRepository.save(novaChave);
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public List<ChaveResponseDTO> getAll() {
         List<Chave> chaves = chaveRepository.findAll();
         List<ChaveResponseDTO> chaveResponseDTOs = new ArrayList<>();

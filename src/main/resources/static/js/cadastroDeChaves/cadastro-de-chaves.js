@@ -170,7 +170,7 @@ function exibirChaves(data) {
 
 // Função para buscar e exibir as localizações já cadastradas
 function buscarChavesCadastradas() {
-    fetch("http://localhost:8080/cadastro-de-chaves/")
+    fetch("http://localhost:8080/cadastro-de-chaves")
         .then(response => response.json())
         .then(data => {
 
@@ -247,7 +247,7 @@ function atualizarChave(idChave, NovaChaveEditada) {
 }
 
 function buscarLocalizacoesCadastradas() {
-    fetch("http://localhost:8080/cadastro-de-localizacao/")
+    fetch("http://localhost:8080/cadastro-de-localizacao")
         .then(response => response.json())
         .then(data => {
 

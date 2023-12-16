@@ -31,7 +31,7 @@ public class LocalizacaoController {
         return localizacaoRepository.save(localizacoes);
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public List<LocalizacaoResponseDTO> getAll(){
         List<LocalizacaoResponseDTO> localizacaoList = localizacaoRepository.findAll().stream().map(LocalizacaoResponseDTO::new).toList();
         return localizacaoList;
