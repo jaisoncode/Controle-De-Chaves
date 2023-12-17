@@ -44,15 +44,15 @@ async function fazerRequisicaoGETComToken(token) {
         const response = await fetch('http://localhost:8080/page/cadastro-de-chaves', {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token}`
+                Authorization: 'Bearer '+token
             }
-        });
-
-        if (!response.ok) {
-            throw new Error('Falha na requisição GET');
-        } else{
-            window.location.href = '/page/cadastro-de-chaves';
-        }
+        })
+            .then((res) => res.text())
+            .then((rawHtml) => {
+                  document.write(rawHtml);
+                  document.close;
+                });
+        
 
     } catch (error) {
         console.error('Erro na requisição GET:', error.message);
