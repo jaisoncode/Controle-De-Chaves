@@ -1,14 +1,39 @@
 package com.example.controledechaves.controller;
 
-import com.example.controledechaves.model.usuario.Usuario;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("usuario")
+import com.example.controledechaves.usuario.NovoUsuarioDados;
+import com.example.controledechaves.usuario.Usuario;
+import com.example.controledechaves.usuario.UsuarioRepository;
+
+import jakarta.transaction.Transactional;
+
+@Controller
+@RequestMapping("/usuarios")
 public class UsuarioController {
+    @Autowired
+    private UsuarioRepository usuarioRepo;
 
-    public Usuario createUsuario(){
-        return createUsuario();
+    @GetMapping("cadastro")
+    public String loadNovoUsuarioForm(){
+        return "usuarios/cadastro";
     }
+
+
+    @Transactional
+    @PostMapping("salvar")
+    public String guardarUsuario(NovoUsuarioDados dados){
+        System.out.println("Salvando os " + dados);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String password = encoder.encode(dados.password());
+        Usuario u = new Usuario(dados.username(), dados.email(), password);
+        usuarioRepo.save(u);
+        return "redirect:/login";
+    }
+
 }
