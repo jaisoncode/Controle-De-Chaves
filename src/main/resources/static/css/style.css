@@ -87,6 +87,29 @@ input {
     font-weight: 500;
 }
 
+.perfil-top-nav{
+    color: white;
+    font-weight: 500;
+    padding: .7rem 1rem;
+    
+    margin-right: 1rem;
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+}
+
+.perfil-top-nav i {
+    font-size: 2.4rem;
+    padding-left: 0.3rem;
+}
+
+.perfil-top-nav:hover{
+    transition: all 200ms ease-in-out;
+    background-color: white;
+    color: var(--font-primary);
+    cursor: pointer;
+}
+
 .main-conteudo {
     margin-top: -27rem;
     min-height: 78vh;

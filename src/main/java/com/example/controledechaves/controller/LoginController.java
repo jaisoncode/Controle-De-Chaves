@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
-//@RequestMapping("/")
 public class LoginController {
     SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
 

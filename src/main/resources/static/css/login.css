@@ -1,14 +1,16 @@
 :root {
-
-    --header-backgroud: #0258FF;
-    --body-background: #F2F3F8;
+    --backgroud-blue: #5E72E4;
+    --background-gray: linear-gradient(180deg, rgba(242, 243, 248, 1) 70%, rgba(255, 255, 255, 1) 100%);
     --white-color: #FFFFFF;
-    --update-backdgroud: #E7D000;
-    --cancel-background: #E02424;
-    --mark-list: #DAE7FF;
-    --item-list-background: #EEEEEE;
-    --placeholder-font: #CAC8C8;
-    --border-color: #CFC7C7;
+    --in-use-color: #FFAB00;
+    --update-color: #E7D000;
+    --confirm-color: #36B37E;
+    --cancel-color: #FF5630;
+    --font-primary: #3C4858;
+    --font-second: #8492A6;
+    --line-color: #EFF2F7;
+    --line-header: #A3A9D5;
+    --placeholder-font: #6D7175;
 }
 
 * {
@@ -16,7 +18,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    font-size: 1.6rem;
 }
 
 
@@ -34,104 +35,61 @@ body {
     justify-content: center;
     height: 100vh;
     /* Faz com que o conteúdo ocupe toda a altura da tela */
+    background-color: #5E72E4;
+}
+
+#logo{
+    font-size: 3rem;
+    font-weight: 600;
 }
 
 .container {
-    background: linear-gradient(50deg, #0258FF, #4BC4EB);
-    width: 94.4rem;
-    height: 53.8rem;
-    border-radius: 3rem;
+   
+    background: #EFF2F7;
+    width: 37rem;
+    padding: 4rem 0;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-#logo,
-.container h2,
-.container h3 {
-    color: var(--white-color);
-    font-weight: 900;
-    padding-bottom: 1rem;
-}
-
-#logo {
-    font-size: 5rem;
-    text-transform: uppercase;
-    margin-top: 5rem;
-    margin-bottom: 4rem;
+.input-icon {
+    position: relative; 
+    margin: 1rem 0;  
     
 }
 
-.container h2 {
-    font-size: 2.4rem;
-    padding-bottom: 2rem;
-}
-
-.container h3 {
+.input-login{
+    height: 3.7rem;
+    width: 25rem;
+    padding-left: 1rem;
     font-size: 1.6rem;
-    font-style: italic;
-    font-weight: 400;
-    padding-bottom: 2rem;
-
-}
-
-input[type="text"],
-input[type="password"],
-.btn-lg {
-    font-size: 1.6rem;
-    font-weight: 500;
-    width: 42.3rem;
-    height: 5rem;
     border-radius: .5rem;
-    padding-left: 6rem;
-    box-shadow: .2rem .2rem .4rem .1rem rgba(0, 0, 0, 0.226);
-    color: #6D6D6D;
-    border: none;
-    margin-bottom: 1.9rem;
-}
-
-
-.bx {
-    color: var(--placeholder-font);
-    position: absolute;
-    padding-top: 1.3rem;
-    padding-left: 2rem;
-    font-size: 2.3rem;
-}
-
-#username,
-#password:focus {
+    border: 1px solid var(--line-color);
     outline: none;
 }
 
-#username::placeholder,
-#password::placeholder {
-    font-size: 1.6rem;
-    color: #CAC8C8;
+.bx {
+    position: absolute;
+    top: .9rem;
+    left: .5rem;
+    font-size: 1.9rem;
 }
 
-.btn-lg {
-    background-color: var(--header-backgroud);
-    color: var(--white-color);
-    padding: .1rem;
-    border: none;
-    border-radius: .5rem;
-    cursor: pointer;
-    font-size: 1.6rem;
-    text-transform: uppercase;
-    font-weight: 800;
-    margin-bottom: 2.9rem;
-    transition: background 300ms ease-in;
+.btn-lg{
+    border: #36B37E 1px solid;
+    padding: 0; 
+    font-weight: 500;
+    background-color: #2C7BE5;
+    color: white;
+    margin-bottom: 2rem;
 }
 
-.btn-lg:hover {
-    background: linear-gradient(to left, #0258FF, #4BC4EB);
-}
-
-.esqueci-password {
-    color: var(--white-color);
-    font-size: 1.4rem;
-    font-weight: 400;
+.btn-lg:hover{
+    transition: all 200ms ease;
+    opacity: .8;
     cursor: pointer;
 }
 
-.esqueci-password:hover {
-    text-decoration: underline;
-}
+

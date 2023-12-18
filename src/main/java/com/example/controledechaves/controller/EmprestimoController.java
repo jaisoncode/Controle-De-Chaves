@@ -84,22 +84,23 @@ public class EmprestimoController {
                     emprestimo.getDataDevolucao(),
                     emprestimo.getHorarioDevolucao(),
                     emprestimo.getStatus()));
-                }
+        }
         return emprestimoResponseDTOs;
     }
-    
+
     @GetMapping("do-dia")
     public List<Emprestimo> getEmprestimosDoDia() {
         LocalDate dataAtual = LocalDate.now(); // Obtém a data atual
         return emprestimoRepository.findByDataSaida(dataAtual);
     }
-    
+
     @GetMapping("do-dia-em-uso/{status}")
     public List<Emprestimo> getEmprestimosDoDiaEmUso(@PathVariable String status) {
         LocalDate dataAtual = LocalDate.now(); // Obtém a data atual
+
         return emprestimoRepository.findByDataSaidaAndStatus(dataAtual, status);
     }
-    
+
     @PutMapping("{id}")
     public void updateEmprestimo(@PathVariable Long id, @RequestBody Map<String, Object> updates) {
 
@@ -117,7 +118,6 @@ public class EmprestimoController {
 
         emprestimoRepository.save(emprestimo);
     }
-
 
     @DeleteMapping("{id}")
     public void deleteEmprestimo(@PathVariable long id) {

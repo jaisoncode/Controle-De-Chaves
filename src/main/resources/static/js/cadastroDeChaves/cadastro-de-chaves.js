@@ -15,8 +15,6 @@ const submitChave = document.querySelector('#button-adicionar-chave')
 const closeModal = document.querySelector('#fechar-modal');
 
 
-
-
 closeModal.addEventListener('click', function () {
     modalCadChave.style.display = 'none';
     //inputNomeDaChave.value = "";

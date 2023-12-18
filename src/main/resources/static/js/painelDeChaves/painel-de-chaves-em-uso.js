@@ -25,7 +25,11 @@ closeModal.addEventListener('click', function () {
 
 const agora = new Date();
 
-const dataSaidaFormatada = agora.toISOString().split('T')[0]; // Obtém a data no formato 'yyyy-MM-dd'
+const ano = agora.getFullYear().toString().padStart(4, '0'); // Obtém o ano no formato 'yyyy'
+const mes = (agora.getMonth() + 1).toString().padStart(2, '0'); // Obtém o mês no formato 'MM' (lembre-se que janeiro é 0)
+const dia = agora.getDate().toString().padStart(2, '0'); // Obtém o dia no formato 'dd'
+
+const dataSaidaFormatada = `${ano}-${mes}-${dia}`; // Formata a data no formato 'yyyy-MM-dd'
 
 const horas = agora.getHours().toString().padStart(2, '0'); // Obtém as horas no formato 'HH'
 const minutos = agora.getMinutes().toString().padStart(2, '0'); // Obtém os minutos no formato 'mm'
@@ -33,8 +37,9 @@ const segundos = agora.getSeconds().toString().padStart(2, '0'); // Obtém os se
 
 const horarioSaidaFormatado = `${horas}:${minutos}:${segundos}`; // Formata a hora no formato 'HH:mm:ss'
 
-console.log(dataSaidaFormatada)
-console.log(horarioSaidaFormatado)
+console.log(dataSaidaFormatada);
+console.log(horarioSaidaFormatado);
+
 
 //formChave.addEventListener("submit", function (event) {
 // event.preventDefault();
