@@ -17,23 +17,30 @@ closeModal.addEventListener('click', function () {
 
 
 submitSetor.addEventListener('click', function () {
-    if (modoEdicao && idSetor !== null) {
-        const setorEditado = {
-            nome: inputNomeDoSetor.value
-            // Outros campos que você precise editar
-        };
-        atualizarSetor(idSetor, setorEditado);
-        modoEdicao = false; // Resetando o modo para adição
-        idSetor = null;
+    if (inputNomeDoSetor.value.trim() == ""
+    ) {
+        alert("o input está vazio, preechea-o com valor válido");
     } else {
-        const objetoJson = {
-            nome: inputNomeDoSetor.value
-            // Outros campos para criar um novo item
-        };
-        cadastrarSetor(objetoJson); // Chame a função para cadastrar a localização
+        if (modoEdicao && idSetor !== null) {
+            const setorEditado = {
+                nome: inputNomeDoSetor.value
+                // Outros campos que você precise editar
+            };
+            atualizarSetor(idSetor, setorEditado);
+            modoEdicao = false; // Resetando o modo para adição
+            idSetor = null;
+        } else {
+            const objetoJson = {
+                nome: inputNomeDoSetor.value
+                // Outros campos para criar um novo item
+            };
+            cadastrarSetor(objetoJson); // Chame a função para cadastrar a localização
+        }
+        modalCadSetor.style.display = 'none';
+        inputNomeDoSetor.value = "";
     }
-    modalCadSetor.style.display = 'none';
-    inputNomeDoSetor.value = "";
+
+
 })
 
 formSetor.addEventListener("submit", function (event) {
@@ -62,7 +69,7 @@ function exibirSetor(data) {
     </tr>`;
     });
 
-    
+
 
     tabelaSetor.innerHTML = novoSetor;
 
@@ -96,7 +103,7 @@ function exibirSetor(data) {
     });
 
     data.forEach(setor => {
-        
+
         const iconEditar = document.querySelector(`#btn-edt-setor-${setor.id}`)
         const iconDeletar = document.querySelector(`#btn-del-setor-${setor.id}`)
 

@@ -41,40 +41,36 @@ submitChave.addEventListener('click', function () {
     ) {
         alert("o input está vazio, preechea-o com valor válido");
     } else {
-        confirmeCadastro.style.display = "block";
+        if (modoEdicao && idChave !== null) {
+            const NovaChaveEditada = {
+                nome: inputNomeDaChave.value,
+                setor: selectSetor.value,
+                localizacao: selectLocalizacao.value,
+                status: statusEdit
+
+                // Outros campos que você precise editar
+            };
+            atualizarChave(idChave, NovaChaveEditada);
+            modoEdicao = false; // Resetando o modo para adição
+            idChave = null;
+        } else {
+            const objetoJson = {
+                nome: inputNomeDaChave.value,
+                setor: selectSetor.value,
+                localizacao: selectLocalizacao.value,
+                status: "Disponível"
+                // Outros campos para criar um novo item
+            };
+            idSetor = selectSetor.value;
+            idLocalizacao = selectLocalizacao.value;
+            cadastrarChave(objetoJson, idSetor, idLocalizacao);
+
+            // Chame a função para cadastrar a localização
+        }
+        limpar();
+        modalCadChave.style.display = 'none';
     }
 
-    if (modoEdicao && idChave !== null) {
-        const NovaChaveEditada = {
-            nome: inputNomeDaChave.value,
-            setor: selectSetor.value,
-            localizacao: selectLocalizacao.value,
-            status: statusEdit
-
-            // Outros campos que você precise editar
-        };
-        atualizarChave(idChave, NovaChaveEditada);
-        modoEdicao = false; // Resetando o modo para adição
-        idChave = null;
-    } else {
-        const objetoJson = {
-            nome: inputNomeDaChave.value,
-            setor: selectSetor.value,
-            localizacao: selectLocalizacao.value,
-            status: "Disponível"
-            // Outros campos para criar um novo item
-        };
-        idSetor = selectSetor.value;
-        idLocalizacao = selectLocalizacao.value;
-        cadastrarChave(objetoJson, idSetor, idLocalizacao);
-
-        // Chame a função para cadastrar a localização
-    }
-    limpar();
-    modalCadChave.style.display = 'none';
-    //inputNomeDaChave.value = "";
-    // selectSetor.value = "";
-    // selectLocalizacao.value = "";
 })
 
 formChave.addEventListener("submit", function (event) {

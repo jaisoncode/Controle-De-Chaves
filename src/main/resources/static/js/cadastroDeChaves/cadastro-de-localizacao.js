@@ -21,26 +21,26 @@ submitLocalizacao.addEventListener('click', function () {
     ) {
         alert("o input está vazio, preechea-o com valor válido");
     } else {
-        confirmeCadastro.style.display = "block";
+        if (modoEdicao && idLocalizacao !== null) {
+            const localizacaoEditada = {
+                nomePredio: inputNomeDaLocalizacao.value
+                // Outros campos que você precise editar
+            };
+            atualizarLocalizacao(idLocalizacao, localizacaoEditada);
+            modoEdicao = false; // Resetando o modo para adição
+            idLocalizacao = null;
+        } else {
+            const objetoJson = {
+                nomePredio: inputNomeDaLocalizacao.value
+                // Outros campos para criar um novo item
+            };
+            cadastrarLocalizacao(objetoJson); // Chame a função para cadastrar a localização
+        }
+        modalCadlocalizacao.style.display = 'none';
+        inputNomeDaLocalizacao.value = "";
     }
 
-    if (modoEdicao && idLocalizacao !== null) {
-        const localizacaoEditada = {
-            nomePredio: inputNomeDaLocalizacao.value
-            // Outros campos que você precise editar
-        };
-        atualizarLocalizacao(idLocalizacao, localizacaoEditada);
-        modoEdicao = false; // Resetando o modo para adição
-        idLocalizacao = null;
-    } else {
-        const objetoJson = {
-            nomePredio: inputNomeDaLocalizacao.value
-            // Outros campos para criar um novo item
-        };
-        cadastrarLocalizacao(objetoJson); // Chame a função para cadastrar a localização
-    }
-    modalCadlocalizacao.style.display = 'none';
-    inputNomeDaLocalizacao.value = "";
+   
 })
 
 formLocalizacao.addEventListener("submit", function (event) {
