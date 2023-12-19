@@ -23,13 +23,27 @@ closeModal.addEventListener('click', function () {
 
 });
 
-
+function limpar() {
+    inputNomeDaChave.value = "";
+    selectSetor.value = "";
+    selectLocalizacao.value = "";
+}
 
 let modoEdicao = false;
 let idChave = null;
 let statusEdit = null;
 
 submitChave.addEventListener('click', function () {
+
+    if (inputNomeDaChave.value.trim() == "" ||
+        selectSetor.value.trim() == "" ||
+        selectLocalizacao.value.trim() == ""
+    ) {
+        alert("o input está vazio, preechea-o com valor válido");
+    } else {
+        confirmeCadastro.style.display = "block";
+    }
+
     if (modoEdicao && idChave !== null) {
         const NovaChaveEditada = {
             nome: inputNomeDaChave.value,
@@ -52,8 +66,11 @@ submitChave.addEventListener('click', function () {
         };
         idSetor = selectSetor.value;
         idLocalizacao = selectLocalizacao.value;
-        cadastrarChave(objetoJson, idSetor, idLocalizacao); // Chame a função para cadastrar a localização
+        cadastrarChave(objetoJson, idSetor, idLocalizacao);
+
+        // Chame a função para cadastrar a localização
     }
+    limpar();
     modalCadChave.style.display = 'none';
     //inputNomeDaChave.value = "";
     // selectSetor.value = "";
@@ -106,10 +123,10 @@ function exibirChaves(data) {
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/pt-BR.json',
                 "search": ""
-            }        
+            }
         });
 
-        table.on('draw.dt', function () {   
+        table.on('draw.dt', function () {
             $('#table-main_previous').html('<i class="bx bx-chevron-left"></i>');
             $('#table-main_next').html('<i class="bx bx-chevron-right"></i>');
             $('.info-text').text('Chaves cadastradas');
@@ -124,7 +141,7 @@ function exibirChaves(data) {
         });
     });
 
-    
+
 
 
 
@@ -149,6 +166,7 @@ function exibirChaves(data) {
                 modoEdicao = null;
                 idChave = null;
                 console.log(idChave + "resetou");
+                limpar();
             }
 
         }

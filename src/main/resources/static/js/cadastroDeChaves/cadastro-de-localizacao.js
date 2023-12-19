@@ -17,6 +17,13 @@ closeModal.addEventListener('click', function () {
 
 
 submitLocalizacao.addEventListener('click', function () {
+    if (inputNomeDaLocalizacao.value.trim() == ""    
+    ) {
+        alert("o input está vazio, preechea-o com valor válido");
+    } else {
+        confirmeCadastro.style.display = "block";
+    }
+
     if (modoEdicao && idLocalizacao !== null) {
         const localizacaoEditada = {
             nomePredio: inputNomeDaLocalizacao.value
@@ -111,6 +118,7 @@ function exibirLocalizacao(data) {
                 modoEdicao = null;
                 idLocalizacao = null;
                 console.log(idLocalizacao + "resetou");
+                
             }
 
         }

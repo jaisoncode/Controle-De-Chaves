@@ -99,8 +99,9 @@ public class ChavesController {
 
         // Verifica se a chave está associada a um empréstimo
         boolean chaveEmUso = emprestimoRepository.existsByChaveAndStatus(chave, "Em uso");
+        boolean chaveDevolvida = emprestimoRepository.existsByChaveAndStatus(chave, "Devolvido");
 
-        if (chaveEmUso) {
+        if (chaveEmUso || chaveDevolvida) {
             return ResponseEntity.badRequest().body("Chave em uso, impossível apagar");
         } else {
             // Remove as referências da chave
